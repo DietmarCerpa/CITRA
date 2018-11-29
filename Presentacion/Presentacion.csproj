@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1D37BD3-74DA-4BA6-9834-29A0C3BA876B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Presentacion</RootNamespace>
+    <AssemblyName>Presentacion</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.VS2010.10.0.40219.1\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.VS2010.10.0.40219.1\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bitácoras\Bitacora_ES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bitácoras\Bitacora_ES.Designer.cs">
+      <DependentUpon>Bitacora_ES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bitácoras\Bitacora_Sucesos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bitácoras\Bitacora_Sucesos.Designer.cs">
+      <DependentUpon>Bitacora_Sucesos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Inamu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Inamu.Designer.cs">
+      <DependentUpon>BAlianza_Inamu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Obf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Obf.Designer.cs">
+      <DependentUpon>BAlianza_Obf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Ods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Ods.Designer.cs">
+      <DependentUpon>BAlianza_Ods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Sinirube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BAlianza_Sinirube.Designer.cs">
+      <DependentUpon>BAlianza_Sinirube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BCamaras_Privadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BCamaras_Privadas.Designer.cs">
+      <DependentUpon>BCamaras_Privadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BCirculos_Sociales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BCirculos_Sociales.Designer.cs">
+      <DependentUpon>BCirculos_Sociales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BDepartamentos.Designer.cs">
+      <DependentUpon>BDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BOrganizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BOrganizaciones.Designer.cs">
+      <DependentUpon>BOrganizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BPaises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BPaises.Designer.cs">
+      <DependentUpon>BPaises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BPermisosxModulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BPermisosxModulo.Designer.cs">
+      <DependentUpon>BPermisosxModulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BPermisosxRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BPermisosxRol.Designer.cs">
+      <DependentUpon>BPermisosxRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BRegional_Onu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BRegional_Onu.Designer.cs">
+      <DependentUpon>BRegional_Onu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BRoles.Designer.cs">
+      <DependentUpon>BRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BSectores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BSectores.Designer.cs">
+      <DependentUpon>BSectores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BSocios_Estrategicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BSocios_Estrategicos.Designer.cs">
+      <DependentUpon>BSocios_Estrategicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BUsuarios.Designer.cs">
+      <DependentUpon>BUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\RBlac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\RBlac.Designer.cs">
+      <DependentUpon>RBlac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CITRADataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CITRADataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Utiles.cs" />
+    <Compile Include="Formas_Base\Lista\Frm_Lista_Base.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formas_Base\Lista\Frm_Lista_Base.Designer.cs">
+      <DependentUpon>Frm_Lista_Base.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formas_Base\Mantenimiento\Frm_mantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formas_Base\Mantenimiento\Frm_mantenimiento.Designer.cs">
+      <DependentUpon>Frm_mantenimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Acceso_Manual_Usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Acceso_Manual_Usuario.Designer.cs">
+      <DependentUpon>F_Acceso_Manual_Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Acerca_De.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Acerca_De.Designer.cs">
+      <DependentUpon>F_Acerca_De.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Inamu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Inamu.Designer.cs">
+      <DependentUpon>F_Alianza_Inamu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Obf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Obf.Designer.cs">
+      <DependentUpon>F_Alianza_Obf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Ods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Ods.Designer.cs">
+      <DependentUpon>F_Alianza_Ods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Sinirube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Alianza_Sinirube.Designer.cs">
+      <DependentUpon>F_Alianza_Sinirube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Camaras_Privadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Camaras_Privadas.Designer.cs">
+      <DependentUpon>F_Camaras_Privadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Cargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Cargos.Designer.cs">
+      <DependentUpon>F_Cargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Circulos_Sociales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Circulos_Sociales.Designer.cs">
+      <DependentUpon>F_Circulos_Sociales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Departamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Departamentos.Designer.cs">
+      <DependentUpon>F_Departamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Organizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Organizaciones.Designer.cs">
+      <DependentUpon>F_Organizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Paises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Paises.Designer.cs">
+      <DependentUpon>F_Paises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_PermisosxModulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_PermisosxModulo.Designer.cs">
+      <DependentUpon>F_PermisosxModulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_PermisosxRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_PermisosxRol.Designer.cs">
+      <DependentUpon>F_PermisosxRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Rblac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Rblac.Designer.cs">
+      <DependentUpon>F_Rblac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Regional_Onu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Regional_Onu.Designer.cs">
+      <DependentUpon>F_Regional_Onu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Roles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Roles.Designer.cs">
+      <DependentUpon>F_Roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Sectores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Sectores.Designer.cs">
+      <DependentUpon>F_Sectores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Socios_Estrategicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Socios_Estrategicos.Designer.cs">
+      <DependentUpon>F_Socios_Estrategicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listas\F_Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listas\F_Usuarios.Designer.cs">
+      <DependentUpon>F_Usuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buscadores\BCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buscadores\BCargos.Designer.cs">
+      <DependentUpon>BCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Obf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Obf.Designer.cs">
+      <DependentUpon>mAlianza_Obf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Inamu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Inamu.Designer.cs">
+      <DependentUpon>mAlianza_Inamu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Ods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Ods.Designer.cs">
+      <DependentUpon>mAlianza_Ods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Sinirube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mAlianza_Sinirube.Designer.cs">
+      <DependentUpon>mAlianza_Sinirube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mCamaras_Privadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mCamaras_Privadas.Designer.cs">
+      <DependentUpon>mCamaras_Privadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mCargos.Designer.cs">
+      <DependentUpon>mCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mCirculos_Sociales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mCirculos_Sociales.Designer.cs">
+      <DependentUpon>mCirculos_Sociales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mDepartamentos.Designer.cs">
+      <DependentUpon>mDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mOrganizaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mOrganizaciones.Designer.cs">
+      <DependentUpon>mOrganizaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mPaises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mPaises.Designer.cs">
+      <DependentUpon>mPaises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mPermisosxModulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mPermisosxModulo.Designer.cs">
+      <DependentUpon>mPermisosxModulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mPermisosxRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mPermisosxRol.Designer.cs">
+      <DependentUpon>mPermisosxRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mRblac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mRblac.Designer.cs">
+      <DependentUpon>mRblac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mRegional_Onu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mRegional_Onu.Designer.cs">
+      <DependentUpon>mRegional_Onu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mRoles.Designer.cs">
+      <DependentUpon>mRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mSectores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mSectores.Designer.cs">
+      <DependentUpon>mSectores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mSocios_Estrategicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mSocios_Estrategicos.Designer.cs">
+      <DependentUpon>mSocios_Estrategicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\mUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\mUsuarios.Designer.cs">
+      <DependentUpon>mUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RAlianza_Ods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RAlianza_Ods.Designer.cs">
+      <DependentUpon>RAlianza_Ods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RCirculos_Sociales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RCirculos_Sociales.Designer.cs">
+      <DependentUpon>RCirculos_Sociales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RSocios_Estrategicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RSocios_Estrategicos.Designer.cs">
+      <DependentUpon>RSocios_Estrategicos.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitácoras\Bitacora_ES.resx">
+      <DependentUpon>Bitacora_ES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bitácoras\Bitacora_Sucesos.resx">
+      <DependentUpon>Bitacora_Sucesos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BAlianza_Inamu.resx">
+      <DependentUpon>BAlianza_Inamu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BAlianza_Obf.resx">
+      <DependentUpon>BAlianza_Obf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BAlianza_Ods.resx">
+      <DependentUpon>BAlianza_Ods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BAlianza_Sinirube.resx">
+      <DependentUpon>BAlianza_Sinirube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BCamaras_Privadas.resx">
+      <DependentUpon>BCamaras_Privadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BCirculos_Sociales.resx">
+      <DependentUpon>BCirculos_Sociales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BDepartamentos.resx">
+      <DependentUpon>BDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BOrganizaciones.resx">
+      <DependentUpon>BOrganizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BPaises.resx">
+      <DependentUpon>BPaises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BPermisosxModulo.resx">
+      <DependentUpon>BPermisosxModulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BPermisosxRol.resx">
+      <DependentUpon>BPermisosxRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BRegional_Onu.resx">
+      <DependentUpon>BRegional_Onu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BRoles.resx">
+      <DependentUpon>BRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BSectores.resx">
+      <DependentUpon>BSectores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BSocios_Estrategicos.resx">
+      <DependentUpon>BSocios_Estrategicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BUsuarios.resx">
+      <DependentUpon>BUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\RBlac.resx">
+      <DependentUpon>RBlac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formas_Base\Lista\Frm_Lista_Base.resx">
+      <DependentUpon>Frm_Lista_Base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formas_Base\Mantenimiento\Frm_mantenimiento.resx">
+      <DependentUpon>Frm_mantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Acceso_Manual_Usuario.resx">
+      <DependentUpon>F_Acceso_Manual_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Acerca_De.resx">
+      <DependentUpon>F_Acerca_De.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Alianza_Inamu.resx">
+      <DependentUpon>F_Alianza_Inamu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Alianza_Obf.resx">
+      <DependentUpon>F_Alianza_Obf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Alianza_Ods.resx">
+      <DependentUpon>F_Alianza_Ods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Alianza_Sinirube.resx">
+      <DependentUpon>F_Alianza_Sinirube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Camaras_Privadas.resx">
+      <DependentUpon>F_Camaras_Privadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Cargos.resx">
+      <DependentUpon>F_Cargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Circulos_Sociales.resx">
+      <DependentUpon>F_Circulos_Sociales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Departamentos.resx">
+      <DependentUpon>F_Departamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Organizaciones.resx">
+      <DependentUpon>F_Organizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Paises.resx">
+      <DependentUpon>F_Paises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_PermisosxModulo.resx">
+      <DependentUpon>F_PermisosxModulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_PermisosxRol.resx">
+      <DependentUpon>F_PermisosxRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Rblac.resx">
+      <DependentUpon>F_Rblac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Regional_Onu.resx">
+      <DependentUpon>F_Regional_Onu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Roles.resx">
+      <DependentUpon>F_Roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Sectores.resx">
+      <DependentUpon>F_Sectores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Socios_Estrategicos.resx">
+      <DependentUpon>F_Socios_Estrategicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listas\F_Usuarios.resx">
+      <DependentUpon>F_Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buscadores\BCargos.resx">
+      <DependentUpon>BCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mAlianza_Inamu.resx">
+      <DependentUpon>mAlianza_Inamu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mAlianza_Obf.resx">
+      <DependentUpon>mAlianza_Obf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mAlianza_Ods.resx">
+      <DependentUpon>mAlianza_Ods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mAlianza_Sinirube.resx">
+      <DependentUpon>mAlianza_Sinirube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mCamaras_Privadas.resx">
+      <DependentUpon>mCamaras_Privadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mCargos.resx">
+      <DependentUpon>mCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mCirculos_Sociales.resx">
+      <DependentUpon>mCirculos_Sociales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mDepartamentos.resx">
+      <DependentUpon>mDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mOrganizaciones.resx">
+      <DependentUpon>mOrganizaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mPaises.resx">
+      <DependentUpon>mPaises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mPermisosxModulo.resx">
+      <DependentUpon>mPermisosxModulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mPermisosxRol.resx">
+      <DependentUpon>mPermisosxRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mRblac.resx">
+      <DependentUpon>mRblac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mRegional_Onu.resx">
+      <DependentUpon>mRegional_Onu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mRoles.resx">
+      <DependentUpon>mRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mSectores.resx">
+      <DependentUpon>mSectores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mSocios_Estrategicos.resx">
+      <DependentUpon>mSocios_Estrategicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\mUsuarios.resx">
+      <DependentUpon>mUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estaticos\RAlianza_Ods.resx">
+      <DependentUpon>RAlianza_Ods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estaticos\RCirculos_Sociales.resx">
+      <DependentUpon>RCirculos_Sociales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estaticos\Report1.rdlc" />
+    <EmbeddedResource Include="Reportes\Estaticos\Report2.rdlc" />
+    <EmbeddedResource Include="Reportes\Estaticos\Report3.rdlc" />
+    <EmbeddedResource Include="Reportes\Estaticos\RSocios_Estrategicos.resx">
+      <DependentUpon>RSocios_Estrategicos.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CITRADataSet.xsc">
+      <DependentUpon>CITRADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CITRADataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CITRADataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CITRADataSet.xss">
+      <DependentUpon>CITRADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Manual de usuario\UNDP-LAC-Country Offices Directory-7September2018.pdf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\limpiar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5-tecnologias-de-gestion-que-no-te-deben-faltar-en-2016_articuloApaisada.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\297348.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{95650465-7963-425e-a371-ca01f71fc4b0}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocios\Negocios.csproj">
+      <Project>{2e47881a-6299-4b77-b6c2-75dccfafff25}</Project>
+      <Name>Negocios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guardar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnud_0.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-pdf-download-acrobat-adobe-reader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Permisos.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Informacion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\permisos_modulo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\permisos_modulo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reportes\Dinamicos\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
