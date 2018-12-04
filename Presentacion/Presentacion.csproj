@@ -664,6 +664,7 @@
     <None Include="CITRADataSet.xss">
       <DependentUpon>CITRADataSet.xsd</DependentUpon>
     </None>
+    <None Include="CITRA_BD_Respaldo\CITRA.bak" />
     <None Include="Manual de usuario\UNDP-LAC-Country Offices Directory-7September2018.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
