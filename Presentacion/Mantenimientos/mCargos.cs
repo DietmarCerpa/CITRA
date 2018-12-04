@@ -17,6 +17,8 @@ namespace Presentacion
 {
     public partial class mCargos : Frm_mantenimiento
     {
+
+
         public mCargos()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace Presentacion
         Cargos ICargos;
         Cargo VCargo;
         ConsultasSQL sql = new ConsultasSQL();
+        
         #endregion
 
         #region "Propiedades"
@@ -85,7 +88,8 @@ namespace Presentacion
                  {
                      case "A":
                         #region "Valida campos repetidos en BD"
-                        SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
+
+                        SqlConnection _Conexion = new SqlConnection(@"Data Source=JTONYVAIO; Initial Catalog= CITRA; Integrated Security= true; MultipleActiveResultSets=True");
                         string CadenaSql = "SELECT Id_Cargo,Nombre_Cargo from Cargos where Id_Cargo= '" + Txt_Id_Cargo.Text + "' OR Nombre_Cargo = '" + Txt_Nombre_Cargo.Text + "'";
                         SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
                         
@@ -114,7 +118,7 @@ namespace Presentacion
                             if (MessageBox.Show("Está seguro que desea actualizar los datos seleccionados?", "Modificación de datos", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
                              #region "Valida campos repetidos en BD"
-                             SqlConnection _Conexion1 = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
+                             SqlConnection _Conexion1 = new SqlConnection(@"Data Source=JTONYVAIO; Initial Catalog= CITRA; Integrated Security= true; MultipleActiveResultSets=True");
                              string CadenaSql1 = "SELECT Id_Cargo,Nombre_Cargo from Cargos where Id_Cargo= '" + Txt_Id_Cargo.Text + "' OR Nombre_Cargo = '" + Txt_Nombre_Cargo.Text + "'";
                              SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion1);
 
