@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Presentacion;
+using System.Configuration;
 
 
 namespace Principal
@@ -38,9 +39,12 @@ namespace Principal
                         return;
                     }
                 #endregion
-
-                    SqlConnection _Conexion = new SqlConnection(@"Data Source=JTONYVAIO; Initial Catalog= CITRA; Integrated Security= true; MultipleActiveResultSets=True");
-
+                if (txtservidor.Text != "")
+                {
+                    CadenaConexion Servidor = new CadenaConexion();
+                    Servidor.GuardarServidor(txtservidor.Text);
+                }
+                    SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
                     string CadenaSql = "SELECT Id_Usuario, Nombre_Usuario, Contraseña, Roles FROM Usuarios WHERE Nombre_Usuario= '" + txtusuario.Text + "' AND Contraseña= '" + txtcontraseña.Text + "'";
                     SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
                     _Conexion.Open();

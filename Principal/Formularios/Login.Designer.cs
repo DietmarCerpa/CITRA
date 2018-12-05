@@ -35,6 +35,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtcontraseña = new System.Windows.Forms.TextBox();
             this.btnsalir = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtservidor = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtusuario
@@ -46,7 +48,7 @@
             // 
             // btninciosesion
             // 
-            this.btninciosesion.Location = new System.Drawing.Point(146, 187);
+            this.btninciosesion.Location = new System.Drawing.Point(146, 212);
             this.btninciosesion.Name = "btninciosesion";
             this.btninciosesion.Size = new System.Drawing.Size(92, 23);
             this.btninciosesion.TabIndex = 1;
@@ -82,13 +84,29 @@
             // 
             // btnsalir
             // 
-            this.btnsalir.Location = new System.Drawing.Point(269, 187);
+            this.btnsalir.Location = new System.Drawing.Point(269, 212);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(92, 23);
             this.btnsalir.TabIndex = 6;
             this.btnsalir.Text = "Salir";
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(159, 174);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Servidor";
+            // 
+            // txtservidor
+            // 
+            this.txtservidor.Location = new System.Drawing.Point(261, 171);
+            this.txtservidor.Name = "txtservidor";
+            this.txtservidor.Size = new System.Drawing.Size(100, 20);
+            this.txtservidor.TabIndex = 8;
             // 
             // Login
             // 
@@ -97,6 +115,8 @@
             this.BackgroundImage = global::Principal.Properties.Resources.onu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(545, 308);
+            this.Controls.Add(this.txtservidor);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtcontraseña);
@@ -121,5 +141,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtcontraseña;
         private System.Windows.Forms.Button btnsalir;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtservidor;
     }
 }

@@ -45,6 +45,7 @@
       <HintPath>..\packages\Microsoft.ReportViewer.WinForms.VS2010.10.0.40219.1\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -171,6 +172,7 @@
     <Compile Include="Buscadores\RBlac.Designer.cs">
       <DependentUpon>RBlac.cs</DependentUpon>
     </Compile>
+    <Compile Include="CadenaConexion.cs" />
     <Compile Include="CITRADataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

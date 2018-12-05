@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadenaConexion.cs" />
     <Compile Include="Clases\Camaras_Privadas.cs" />
     <Compile Include="Clases\Cargos.cs" />
     <Compile Include="Clases\Circulos_Sociales.cs" />
