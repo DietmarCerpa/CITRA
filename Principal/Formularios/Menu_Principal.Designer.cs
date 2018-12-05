@@ -311,21 +311,21 @@
             // círculosSocialesToolStripMenuItem
             // 
             this.círculosSocialesToolStripMenuItem.Name = "círculosSocialesToolStripMenuItem";
-            this.círculosSocialesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.círculosSocialesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.círculosSocialesToolStripMenuItem.Text = "Círculos Sociales";
             this.círculosSocialesToolStripMenuItem.Click += new System.EventHandler(this.círculosSocialesToolStripMenuItem_Click);
             // 
             // sociosEstratégicosToolStripMenuItem1
             // 
             this.sociosEstratégicosToolStripMenuItem1.Name = "sociosEstratégicosToolStripMenuItem1";
-            this.sociosEstratégicosToolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
+            this.sociosEstratégicosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.sociosEstratégicosToolStripMenuItem1.Text = "Socios Estratégicos";
             this.sociosEstratégicosToolStripMenuItem1.Click += new System.EventHandler(this.sociosEstratégicosToolStripMenuItem1_Click);
             // 
             // alianzaODSToolStripMenuItem
             // 
             this.alianzaODSToolStripMenuItem.Name = "alianzaODSToolStripMenuItem";
-            this.alianzaODSToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.alianzaODSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.alianzaODSToolStripMenuItem.Text = "Alianza ODS";
             this.alianzaODSToolStripMenuItem.Click += new System.EventHandler(this.alianzaODSToolStripMenuItem_Click);
             // 

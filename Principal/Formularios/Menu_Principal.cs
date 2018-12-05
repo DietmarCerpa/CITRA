@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presentacion;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Principal
 {
@@ -34,7 +35,7 @@ namespace Principal
 
         private void Menu_Principal_Load(object sender, EventArgs e)
         {
-            SqlConnection _Conexion = new SqlConnection(@"Data Source=JTONYVAIO; Initial Catalog= CITRA; Integrated Security= true; MultipleActiveResultSets=True");
+            SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
 
             #region "Validación Alianza Inamu(Modulo 1)"
 
