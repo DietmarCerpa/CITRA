@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Presentacion;
 using System.Data.SqlClient;
 using System.Configuration;
+using Presentacion.Reportes.Estaticos;
 
 namespace Principal
 {
@@ -29,13 +30,13 @@ namespace Principal
             } 
             
             MessageBox.Show("User " + idRol.ToString() + " ", "Validacion de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-        }
 
- 
-
+       }
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
+     
         private void Menu_Principal_Load(object sender, EventArgs e)
         {
-            SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
+            
 
             #region "Validación Alianza Inamu(Modulo 1)"
 
@@ -695,8 +696,11 @@ namespace Principal
 
         private void alianzaODSToolStripMenuItem_Click(object sender, EventArgs e)//reporte
         {
-            RAlianza_Ods Frm_add = new RAlianza_Ods();
+            //RAlianza_Ods Frm_add = new RAlianza_Ods();
+            //Frm_add.ShowDialog(this);
+            RepAlianza_Ods Frm_add = new RepAlianza_Ods();
             Frm_add.ShowDialog(this);
+
         }
 
         private void permisosPorMóduloToolStripMenuItem_Click(object sender, EventArgs e)
