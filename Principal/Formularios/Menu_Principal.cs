@@ -684,13 +684,17 @@ namespace Principal
 
         private void círculosSocialesToolStripMenuItem_Click(object sender, EventArgs e)//reporte
         {
-            RCirculos_Sociales Frm_add = new RCirculos_Sociales();
+            //RCirculos_Sociales Frm_add = new RCirculos_Sociales();
+            //Frm_add.ShowDialog(this);
+            RepCirculos_Sociales Frm_add = new RepCirculos_Sociales();
             Frm_add.ShowDialog(this);
         }
 
         private void sociosEstratégicosToolStripMenuItem1_Click(object sender, EventArgs e)//reporte
         {
-            RSocios_Estrategicos Frm_add = new RSocios_Estrategicos();
+            //RSocios_Estrategicos Frm_add = new RSocios_Estrategicos();
+            //Frm_add.ShowDialog(this);
+            RepSocios_Estrategicos Frm_add = new RepSocios_Estrategicos();
             Frm_add.ShowDialog(this);
         }
 

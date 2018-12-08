@@ -442,6 +442,12 @@
       <DependentUpon>AOds.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\Estaticos\CirSoc.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CirSoc.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\Estaticos\RAlianza_Ods.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -460,11 +466,29 @@
     <Compile Include="Reportes\Estaticos\RepAlianza_Ods.Designer.cs">
       <DependentUpon>RepAlianza_Ods.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Estaticos\RepCirculos_Sociales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RepCirculos_Sociales.Designer.cs">
+      <DependentUpon>RepCirculos_Sociales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RepSocios_Estrategicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\RepSocios_Estrategicos.Designer.cs">
+      <DependentUpon>RepSocios_Estrategicos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Estaticos\RSocios_Estrategicos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\Estaticos\RSocios_Estrategicos.Designer.cs">
       <DependentUpon>RSocios_Estrategicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Estaticos\SocEst.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SocEst.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -656,6 +680,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>AOds.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estaticos\CirSoc.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CirSoc.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Estaticos\RAlianza_Ods.resx">
       <DependentUpon>RAlianza_Ods.cs</DependentUpon>
     </EmbeddedResource>
@@ -665,11 +693,21 @@
     <EmbeddedResource Include="Reportes\Estaticos\RepAlianza_Ods.resx">
       <DependentUpon>RepAlianza_Ods.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estaticos\RepCirculos_Sociales.resx">
+      <DependentUpon>RepCirculos_Sociales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Estaticos\Report1.rdlc" />
     <EmbeddedResource Include="Reportes\Estaticos\Report2.rdlc" />
     <EmbeddedResource Include="Reportes\Estaticos\Report3.rdlc" />
+    <EmbeddedResource Include="Reportes\Estaticos\RepSocios_Estrategicos.resx">
+      <DependentUpon>RepSocios_Estrategicos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Estaticos\RSocios_Estrategicos.resx">
       <DependentUpon>RSocios_Estrategicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Estaticos\SocEst.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SocEst.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
