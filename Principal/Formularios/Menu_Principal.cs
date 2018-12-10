@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presentacion;
 using System.Data.SqlClient;
@@ -16,13 +10,15 @@ namespace Principal
 {
     public partial class Menu_Principal : Form
     {
+        int IDUsuario = 0;
+        int veces = 0;
         public Menu_Principal(int idusuario, int idRol, string usuario)
         {
             InitializeComponent();
             lb_usuario.Text = usuario;
             lbiduser.Text = idusuario.ToString();
             lbidrol.Text = idRol.ToString();
-
+            IDUsuario = idusuario;
             /*if (idRol == 3)
             { //Si es Estandar ocultar esos menú
                 mantenimientosToolStripMenuItem1.Visible = false;
@@ -36,7 +32,7 @@ namespace Principal
      
         private void Menu_Principal_Load(object sender, EventArgs e)
         {
-            
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 
             #region "Validación Alianza Inamu(Modulo 1)"
 
@@ -545,7 +541,29 @@ namespace Principal
 
             #endregion
 
+  
+        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (veces < 1 && DialogResult.Yes == MessageBox.Show("¿Esta seguro que desea abandonar el programa?", "CITRA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+            {
+                using (_Conexion)
+                {
 
+                    string commandText = "INSERT INTO [dbo].[Bitacora_ES] VALUES (@Id_Usuario,@Fecha,@Tipo_Transaccion)";
+                    SqlCommand command = new SqlCommand(commandText, _Conexion);
+                    command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = IDUsuario;
+                    command.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = DateTime.Now.ToString();
+                    command.Parameters.Add("@Tipo_Transaccion", SqlDbType.VarChar, 10).Value = "Salida";
+                    _Conexion.Open();
+                    command.ExecuteNonQuery();
+                    veces = 1;
+                }
+                _Conexion.Close();
+                Application.Exit();
+                Application.ExitThread();
+            }
+            else e.Cancel = true;
 
 
         }
@@ -610,7 +628,8 @@ namespace Principal
 
         private void entradasYSalidasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Bitacora_ES Frm_add = new Bitacora_ES();
+            Frm_add.ShowDialog(this);
         }
 
         private void transaccionesToolStripMenuItem_Click(object sender, EventArgs e)

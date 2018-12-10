@@ -48,10 +48,9 @@ namespace Presentacion
             dgv.DataSource = sql.MostrarDatosSucesos();
         }
 
-        
+        private void Cbo_Buscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-       
-
-
+        }
     }
 }
