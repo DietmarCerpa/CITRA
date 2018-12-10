@@ -17,27 +17,27 @@ namespace Presentacion.Reportes.Estaticos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "")
+            if (txt_Filtrar.Text != "")
             {
-                switch (comboBox1.SelectedIndex)
+                switch (CB_CS.SelectedIndex)
                 {
                     case 0:
-                        filtro = "SELECT * FROM Circulos_Sociales WHERE Nombre_Organizacion LIKE " + textBox1.Text + "%";
+                        filtro = "SELECT * FROM [dbo].[Circulos_Sociales] WHERE Nombre_Organizacion LIKE %" + txt_Filtrar.Text + "%";
                         break;
                     case 1:
-                        filtro = "SELECT * FROM Circulos_Sociales WHERE Nombre_Departamento LIKE " + textBox1.Text + "%";
+                        filtro = "SELECT * FROM [dbo].[Circulos_Sociales] WHERE Nombre_Departamento LIKE %" + txt_Filtrar.Text + "%";
                         break;
                     default:
-                        filtro = "SELECT * FROM Circulos_Sociales";
+                        filtro = "SELECT * FROM [dbo].[Circulos_Sociales]";
                         break;
                 }
             }
-            else filtro = "SELECT * FROM Circulos_Sociales";
+            else filtro = "SELECT * FROM [dbo].[Circulos_Sociales]";
             SqlDataAdapter CirculosSoc = new SqlDataAdapter(filtro, _Conexion);
             CirculosSoc.Fill(dataReport);
             AOds CirSocReport = new AOds();
             CirSocReport.SetDataSource(dataReport);
-            crystalReportViewer1.ReportSource = CirSocReport;
+            CR_CS.ReportSource = CirSocReport;
         }
     }
 }

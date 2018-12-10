@@ -28,25 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.CR_AO = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CB_Filtros = new System.Windows.Forms.ComboBox();
+            this.txt_Filtrar = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // crystalReportViewer1
+            // CR_AO
             // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(0, 45);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(831, 419);
-            this.crystalReportViewer1.TabIndex = 0;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
+            this.CR_AO.ActiveViewIndex = -1;
+            this.CR_AO.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CR_AO.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.CR_AO.Cursor = System.Windows.Forms.Cursors.Default;
+            this.CR_AO.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CR_AO.Location = new System.Drawing.Point(0, 45);
+            this.CR_AO.Name = "CR_AO";
+            this.CR_AO.Size = new System.Drawing.Size(831, 419);
+            this.CR_AO.TabIndex = 0;
+            this.CR_AO.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // button1
             // 
@@ -56,39 +55,37 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Reportar";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox1
+            // CB_Filtros
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.CB_Filtros.FormattingEnabled = true;
+            this.CB_Filtros.Items.AddRange(new object[] {
             "Organización",
             "Cargo",
-            "Nombre de Sector"});
-            this.comboBox1.Location = new System.Drawing.Point(16, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            "Sector"});
+            this.CB_Filtros.Location = new System.Drawing.Point(16, 14);
+            this.CB_Filtros.Name = "CB_Filtros";
+            this.CB_Filtros.Size = new System.Drawing.Size(121, 21);
+            this.CB_Filtros.TabIndex = 2;
             // 
-            // textBox1
+            // txt_Filtrar
             // 
-            this.textBox1.Location = new System.Drawing.Point(156, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
+            this.txt_Filtrar.Location = new System.Drawing.Point(156, 14);
+            this.txt_Filtrar.Name = "txt_Filtrar";
+            this.txt_Filtrar.Size = new System.Drawing.Size(100, 20);
+            this.txt_Filtrar.TabIndex = 3;
             // 
             // RepAlianza_Ods
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 464);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.txt_Filtrar);
+            this.Controls.Add(this.CB_Filtros);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.crystalReportViewer1);
+            this.Controls.Add(this.CR_AO);
             this.Name = "RepAlianza_Ods";
             this.Text = "RepAlianza_Ods";
-            this.Load += new System.EventHandler(this.RepAlianza_Ods_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,9 +93,9 @@
 
         #endregion
 
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer CR_AO;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox CB_Filtros;
+        private System.Windows.Forms.TextBox txt_Filtrar;
     }
 }

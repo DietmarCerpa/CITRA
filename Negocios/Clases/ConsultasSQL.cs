@@ -864,8 +864,6 @@ namespace Negocios
         }
         #endregion
 
-
-
         #region "Bitácora Sucesos"
         public DataTable MostrarDatosSucesos()
         {
@@ -953,6 +951,7 @@ namespace Negocios
             return ds.Tables["tabla"];
         }
         #endregion
+
         #region "Buscar Permisos por Modulo"
 
         public DataTable MostrarPermisoModulo()

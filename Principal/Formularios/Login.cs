@@ -29,24 +29,23 @@ namespace Principal
             try
             {
                 #region "Validaciones campos vacíos"
-                if (this.txtusuario.Text == "")
+                    if (this.txtusuario.Text == "")
                     {
                         MessageBox.Show("El campo Usuario no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-
-
                     if (this.txtcontraseña.Text == "")
                     {
                         MessageBox.Show("El campo Contraseña no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    if (txtservidor.Text != "")
+                    {
+                        CadenaConexion Servidor = new CadenaConexion();
+                        Servidor.GuardarServidor(txtservidor.Text);
+                    }
                 #endregion
-                if (txtservidor.Text != "")
-                {
-                    CadenaConexion Servidor = new CadenaConexion();
-                    Servidor.GuardarServidor(txtservidor.Text);
-                }
+
                 SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
                 string CadenaSql = "SELECT Id_Usuario, Nombre_Usuario, Contraseña, Roles FROM Usuarios WHERE Nombre_Usuario= '" + txtusuario.Text + "' AND Contraseña= '" + txtcontraseña.Text + "'";
                 SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
@@ -99,12 +98,5 @@ namespace Principal
         {
             Application.Exit();
         }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }

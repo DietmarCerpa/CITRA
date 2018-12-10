@@ -92,7 +92,6 @@
             this.lstdatos.TabIndex = 11;
             this.lstdatos.UseCompatibleStateImageBehavior = false;
             this.lstdatos.View = System.Windows.Forms.View.List;
-            this.lstdatos.SelectedIndexChanged += new System.EventHandler(this.lstdatos_SelectedIndexChanged);
             // 
             // Cbo_Buscar
             // 

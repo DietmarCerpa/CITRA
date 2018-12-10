@@ -18,28 +18,28 @@ namespace Presentacion.Reportes.Estaticos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "")
+            if (txt_Filtrar.Text != "")
             {
-                switch (comboBox1.SelectedIndex)
+                switch (CB_SE.SelectedIndex)
                 {
                     case 0:
-                        filtro = "SELECT * FROM Socios_Estrategicos WHERE Nombre_Cargo LIKE " + textBox1.Text + "%";
+                        filtro = "SELECT * FROM [dbo].[Socios_Estrategicos] WHERE Nombre_Cargo LIKE %" + txt_Filtrar.Text + "%";
                         break;
                     case 1:
-                        filtro = "SELECT * FROM Socios_Estrategicos WHERE Nombre_Organizacion LIKE " + textBox1.Text + "%";
+                        filtro = "SELECT * FROM [dbo].[Socios_Estrategicos] WHERE Nombre_Organizacion LIKE %" + txt_Filtrar.Text + "%";
                         break;
                     default:
-                        filtro = "SELECT * FROM Socios_Estrategicos";
+                        filtro = "SELECT * FROM [dbo].[Socios_Estrategicos]";
                         break;
                 }
             }
-            else filtro = "SELECT * FROM Socios_Estrategicos";
+            else filtro = "SELECT * FROM [dbo].[Socios_Estrategicos]";
 
             SqlDataAdapter SociosEst = new SqlDataAdapter(filtro, _Conexion);
             SociosEst.Fill(dataReport);
             AOds SocEstReport = new AOds();
             SocEstReport.SetDataSource(dataReport);
-            crystalReportViewer1.ReportSource = SocEstReport;
+            CR_SE.ReportSource = SocEstReport;
         }
 
         private void RepSocios_Estrategicos_Load(object sender, EventArgs e)
