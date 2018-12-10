@@ -46,7 +46,7 @@ namespace Presentacion
         {
             try
             {
-                string nuevoservidor = "Data Source=" + txtServidor + ";Initial Catalog=CITRA;Integrated Security=False;User Id=" + txtUsuario + ";Password =" + txtPass;
+                string nuevoservidor = "Data Source=" + txtServidor + ";Database=CITRA;User Id=" + txtUsuario + ";Password=" + txtPass;
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 ConnectionStringSettings csSettings = new ConnectionStringSettings("MiConexion", nuevoservidor, "System.Data.SqlClient");
                 ConnectionStringsSection csSection = config.ConnectionStrings;
@@ -55,48 +55,12 @@ namespace Presentacion
                 ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.SectionName);
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+               
                 return false;
             }
         }
-
-        /// <summary>
-        /// este procedimiento permite crear una cadena de conexion para ser implementada en el proyecto tomando el nombre del servidor
-        /// LOCAL
-        /// </summary>
-        /// <param name="txtServidor"> nombre del servidor SQLServer LOCAL</param>
-        public void GuardarServidor(string txtServidor)
-        {
-
-            string nuevoservidor = "Data Source=" + txtServidor + ";Initial Catalog=CITRA;Integrated Security=True";
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            ConnectionStringSettings csSettings = new ConnectionStringSettings("MiConexion", nuevoservidor, "System.Data.SqlClient");
-            ConnectionStringsSection csSection = config.ConnectionStrings;
-            csSection.ConnectionStrings.Add(csSettings);
-            config.Save(ConfigurationSaveMode.Modified, true);
-            ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.SectionName);
-        }
-
-        /// <summary>
-        /// este procedimiento permite crear una cadena de conexion para que sea implementada en el proyecto tomando en cuenta
-        /// el nombre del servidor, usuario y contraseña para acceder a la base de datos
-        /// </summary>
-        /// <param name="txtServidor"> nombre del servidor </param>
-        /// <param name="txtUsuario"> nombre del usuario del servidor (autorizado)</param>
-        /// <param name="txtPase">contraseña del servidor</param>
-        public void GuardarServidorRemoto(string txtServidor, string txtUsuario, string txtPase)
-        {
-
-
-            string nuevoservidor = "Data Source=" + txtServidor + ";Initial Catalog=CITRA;User Id=" + txtUsuario +";Password =" + txtPase;
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            ConnectionStringSettings csSettings = new ConnectionStringSettings("MiConexion", nuevoservidor, "System.Data.SqlClient");
-            ConnectionStringsSection csSection = config.ConnectionStrings;
-            csSection.ConnectionStrings.Add(csSettings);
-            config.Save(ConfigurationSaveMode.Modified, true);
-            ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.SectionName);
-        }
-
+     
     }
 }

@@ -86,9 +86,9 @@ namespace Principal
                     _Conexion.Close();
                     #endregion CONEXION BASE DE DATOS
                 }
-                catch
+                catch(Exception ew)
                 {
-                    MessageBox.Show("Ha ocurrido un error... ¿Configuró el servidor?", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Ha ocurrido un error... ¿Configuró el servidor? \n" + ew.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)

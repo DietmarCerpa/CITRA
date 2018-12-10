@@ -145,7 +145,6 @@
             this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Contraseña:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtServidorRemoto
             // 
@@ -177,7 +176,6 @@
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Servidor:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtServidorLocal
             // 

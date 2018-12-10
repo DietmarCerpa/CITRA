@@ -18,44 +18,6 @@ namespace Principal.Formularios
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rbtnRemoto_CheckedChanged(object sender, EventArgs e)
-        {
-            if(rbtnRemoto.Enabled == true)
-            {
-                grpServidorRemoto.Enabled = true;
-                grpServidorLocal.Enabled = false;
-                LimpiarCamposTexto();
-            }
-        
-        }
-
-        private void rbtnLocal_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbtnLocal.Enabled == true)
-            {
-                grpServidorRemoto.Enabled = false;
-                grpServidorLocal.Enabled = true;
-                LimpiarCamposTexto();
-            }
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //permite cerrar el formulario y cerrar todo lo que este conectado a este
-            Application.Exit();
-            Application.ExitThread();
-   
-        }
 
         private void ConexionServidor_Load(object sender, EventArgs e)
         {
@@ -64,37 +26,36 @@ namespace Principal.Formularios
             ReiniciarCampos();
         }
 
-        /// <summary>
-        /// limpia los campos de texto cada vez que se use esta funcion
-        /// </summary>
-        private void LimpiarCamposTexto()
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            txtPassRemoto.Clear();
-            txtServidorRemoto.Clear();
-            txtUsuarioRemoto.Clear();
-            txtServidorLocal.Clear();
+            //permite cerrar el formulario y cerrar todo lo que este conectado a este
+            MenuLogin();
+
         }
 
-        /// <summary>
-        /// permite reiniciar los valores de logica del formulario
-        /// </summary>
-        private void ReiniciarCampos()
+        private void rbtnRemoto_CheckedChanged(object sender, EventArgs e)
         {
-            grpServidorLocal.Enabled = false;
-            grpServidorRemoto.Enabled = false;
-            rbtnLocal.Checked = false;
-            rbtnRemoto.Checked = false;
+            //si se usa el radiobutton 1 (REMOTO)
+            if (rbtnRemoto.Enabled == true)
+            {
+                grpServidorRemoto.Enabled = true;
+                grpServidorLocal.Enabled = false;
+                LimpiarCamposTexto();
+            }
         }
 
-        /// <summary>
-        /// procedimiento para cambiar al menu de inicio de sesion
-        /// </summary>
-        private void MenuLogin()
+        private void rbtnLocal_CheckedChanged(object sender, EventArgs e)
         {
-            this.Hide();
-            Login formLogin = new Login();
-            formLogin.Show();
+            //si se usa el radiobutton 2 (LOCAL)
+            if (rbtnLocal.Enabled == true)
+            {
+                grpServidorRemoto.Enabled = false;
+                grpServidorLocal.Enabled = true;
+                LimpiarCamposTexto();
+            }
         }
+
+
 
         private void btnServidorRemoto_Click(object sender, EventArgs e)
         {
@@ -117,24 +78,20 @@ namespace Principal.Formularios
             }
             #endregion "Validaciones campos vacios"
 
-            if (!txtServidorRemoto.Equals("") && !txtUsuarioRemoto.Equals("") && !txtPassRemoto.Equals(""))
+            CadenaConexion mServidor = new CadenaConexion();
+            bool mResultado;
+            mResultado = mServidor.guardarServidorRemoto(txtServidorRemoto.Text, txtUsuarioRemoto.Text, txtPassRemoto.Text);
+
+            if(mResultado)
             {
-                CadenaConexion mServidor = new CadenaConexion();
-                bool mResultado;
-
-                mResultado = mServidor.guardarServidorRemoto(txtServidorRemoto.Text, txtUsuarioRemoto.Text, txtPassRemoto.Text);
-                if(mResultado)
-                {
-                    MessageBox.Show("Se ha guardado el servidor REMOTO satisfactoriamente", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //HACER QUE VUELVA AL MENU LOGIN SOLO SI YA SE RESPONDIO EL MESSAGEBOX
-                    //MenuLogin();
-                }
-                else
-                {
-                    MessageBox.Show("Ha ocurrido un error", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
+                MessageBox.Show("Se ha guardado el servidor REMOTO satisfactoriamente", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MenuLogin();
             }
+            else
+            {
+                MessageBox.Show("Ha ocurrido un error", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
 
         }
 
@@ -156,8 +113,7 @@ namespace Principal.Formularios
             if (mResultado)
             {
                 MessageBox.Show("Se ha guardado el servidor REMOTO satisfactoriamente", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //HACER QUE VUELVA AL MENU LOGIN SOLO SI YA SE RESPONDIO EL MESSAGEBOX
-                //MenuLogin();
+                MenuLogin();
             }
             else
             {
@@ -166,5 +122,39 @@ namespace Principal.Formularios
 
    
         }
+
+        /// <summary>
+        /// limpia los campos de texto cada vez que se use esta funcion
+        /// </summary>
+        private void LimpiarCamposTexto()
+        {
+            txtPassRemoto.Clear();
+            txtServidorRemoto.Clear();
+            txtUsuarioRemoto.Clear();
+            txtServidorLocal.Clear();
+        }
+
+
+        /// <summary>
+        /// permite reiniciar los valores de logica del formulario
+        /// </summary>
+        private void ReiniciarCampos()
+        {
+            grpServidorLocal.Enabled = false;
+            grpServidorRemoto.Enabled = false;
+            rbtnLocal.Checked = false;
+            rbtnRemoto.Checked = false;
+        }
+
+        /// <summary>
+        /// procedimiento para cambiar al menu de inicio de sesion
+        /// </summary>
+        private void MenuLogin()
+        {
+            this.Hide();
+            Login formLogin = new Login();
+            formLogin.Show();
+        }
+
     }
 }
