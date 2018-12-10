@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Presentacion;
 using System.Configuration;
-
+using Principal.Formularios;
 
 namespace Principal
 {
@@ -39,53 +39,57 @@ namespace Principal
                         MessageBox.Show("El campo Contraseña no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    if (txtservidor.Text != "")
-                    {
-                        CadenaConexion Servidor = new CadenaConexion();
-                        Servidor.GuardarServidor(txtservidor.Text);
-                    }
                 #endregion
 
-                SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
-                string CadenaSql = "SELECT Id_Usuario, Nombre_Usuario, Contraseña, Roles FROM Usuarios WHERE Nombre_Usuario= '" + txtusuario.Text + "' AND Contraseña= '" + txtcontraseña.Text + "'";
-                SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
-                _Conexion.Open();
-
-                SqlDataReader leer = comando.ExecuteReader();
-                
-                string usuario= null;
-
-                if (leer.Read() == true)
+                try
                 {
-                    MessageBox.Show("Bienvenido " + txtusuario.Text + " ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
-                    /*Obtener ID del Usuario*/
-                    iduser = leer.GetInt32(0);/*Id del Usuario*/
-                    usuario = leer.GetString(1);/*Id ROL del Usuario*/
-                    idrol = leer.GetInt32(3);/*Id ROL del Usuario*/
-                    //MessageBox.Show("User " + iduser.ToString() + " ", "Validacion de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _Conexion.Close();
-                    Menu_Principal frmPrincipal = new Menu_Principal(iduser, idrol, usuario);
-                    frmPrincipal.Show();                   
-                    this.Hide();
-                    using (_Conexion)
-                    {     
-                        string commandText = "INSERT INTO [dbo].[Bitacora_ES] VALUES (@Id_Usuario,@Fecha,@Tipo_Transaccion)";
-                        SqlCommand command = new SqlCommand(commandText, _Conexion);
-                        command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = iduser;
-                        command.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = DateTime.Now.ToString();
-                        command.Parameters.Add("@Tipo_Transaccion", SqlDbType.VarChar, 10).Value = "Entrada";
-                        _Conexion.Open();
-                        command.ExecuteNonQuery();
+                    #region CONEXION BASE DE DATOS
+                    SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
+                    string CadenaSql = "SELECT Id_Usuario, Nombre_Usuario, Contraseña, Roles FROM Usuarios WHERE Nombre_Usuario= '" + txtusuario.Text + "' AND Contraseña= '" + txtcontraseña.Text + "'";
+                    SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
+                    _Conexion.Open();
+
+                    SqlDataReader leer = comando.ExecuteReader();
+
+                    string usuario = null;
+
+                    if (leer.Read() == true)
+                    {
+                        MessageBox.Show("Bienvenido " + txtusuario.Text + " ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        /*Obtener ID del Usuario*/
+                        iduser = leer.GetInt32(0);/*Id del Usuario*/
+                        usuario = leer.GetString(1);/*Id ROL del Usuario*/
+                        idrol = leer.GetInt32(3);/*Id ROL del Usuario*/
+                                                 //MessageBox.Show("User " + iduser.ToString() + " ", "Validacion de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _Conexion.Close();
+                        Menu_Principal frmPrincipal = new Menu_Principal(iduser, idrol, usuario);
+                        frmPrincipal.Show();
+                        this.Hide();
+                        using (_Conexion)
+                        {
+                            string commandText = "INSERT INTO [dbo].[Bitacora_ES] VALUES (@Id_Usuario,@Fecha,@Tipo_Transaccion)";
+                            SqlCommand command = new SqlCommand(commandText, _Conexion);
+                            command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = iduser;
+                            command.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = DateTime.Now.ToString();
+                            command.Parameters.Add("@Tipo_Transaccion", SqlDbType.VarChar, 10).Value = "Entrada";
+                            _Conexion.Open();
+                            command.ExecuteNonQuery();
+                        }
                     }
-                }
-                else
-                {
+                    else
+                    {
                         MessageBox.Show("Error al ingresar los datos, Consulte al administrador", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    }
+
+                    _Conexion.Close();
+                    #endregion CONEXION BASE DE DATOS
                 }
-                 _Conexion.Close();
-                    
+                catch
+                {
+                    MessageBox.Show("Ha ocurrido un error... ¿Configuró el servidor?", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -97,6 +101,18 @@ namespace Principal
         private void btnsalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnServidor_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ConexionServidor formConexionServidor = new ConexionServidor();
+            formConexionServidor.Show();
         }
     }
 }

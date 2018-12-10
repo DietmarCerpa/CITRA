@@ -35,20 +35,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtcontraseña = new System.Windows.Forms.TextBox();
             this.btnsalir = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtservidor = new System.Windows.Forms.TextBox();
+            this.btnServidor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtusuario
             // 
-            this.txtusuario.Location = new System.Drawing.Point(261, 97);
+            this.txtusuario.Location = new System.Drawing.Point(285, 116);
             this.txtusuario.Name = "txtusuario";
             this.txtusuario.Size = new System.Drawing.Size(100, 20);
             this.txtusuario.TabIndex = 0;
             // 
             // btninciosesion
             // 
-            this.btninciosesion.Location = new System.Drawing.Point(146, 212);
+            this.btninciosesion.Location = new System.Drawing.Point(178, 190);
             this.btninciosesion.Name = "btninciosesion";
             this.btninciosesion.Size = new System.Drawing.Size(92, 23);
             this.btninciosesion.TabIndex = 1;
@@ -59,24 +58,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(159, 104);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(164, 112);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(87, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "Usuario:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(159, 141);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(164, 149);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.Size = new System.Drawing.Size(122, 24);
             this.label2.TabIndex = 4;
             this.label2.Text = "Contraseña:";
             // 
             // txtcontraseña
             // 
-            this.txtcontraseña.Location = new System.Drawing.Point(261, 134);
+            this.txtcontraseña.Location = new System.Drawing.Point(285, 153);
             this.txtcontraseña.Name = "txtcontraseña";
             this.txtcontraseña.PasswordChar = '*';
             this.txtcontraseña.Size = new System.Drawing.Size(100, 20);
@@ -84,7 +87,7 @@
             // 
             // btnsalir
             // 
-            this.btnsalir.Location = new System.Drawing.Point(269, 212);
+            this.btnsalir.Location = new System.Drawing.Point(276, 190);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(92, 23);
             this.btnsalir.TabIndex = 6;
@@ -92,21 +95,15 @@
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
-            // label3
+            // btnServidor
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(159, 174);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Servidor";
-            // 
-            // txtservidor
-            // 
-            this.txtservidor.Location = new System.Drawing.Point(261, 171);
-            this.txtservidor.Name = "txtservidor";
-            this.txtservidor.Size = new System.Drawing.Size(100, 20);
-            this.txtservidor.TabIndex = 8;
+            this.btnServidor.Location = new System.Drawing.Point(441, 273);
+            this.btnServidor.Name = "btnServidor";
+            this.btnServidor.Size = new System.Drawing.Size(92, 23);
+            this.btnServidor.TabIndex = 9;
+            this.btnServidor.Text = "Servidor";
+            this.btnServidor.UseVisualStyleBackColor = true;
+            this.btnServidor.Click += new System.EventHandler(this.btnServidor_Click);
             // 
             // Login
             // 
@@ -115,8 +112,7 @@
             this.BackgroundImage = global::Principal.Properties.Resources.onu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(545, 308);
-            this.Controls.Add(this.txtservidor);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnServidor);
             this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtcontraseña);
@@ -127,6 +123,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.Text = "Programa de las Naciones Unidas para el Desarrollo";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,7 +137,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtcontraseña;
         private System.Windows.Forms.Button btnsalir;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtservidor;
+        private System.Windows.Forms.Button btnServidor;
     }
 }
