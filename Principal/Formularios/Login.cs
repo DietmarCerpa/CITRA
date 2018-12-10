@@ -16,6 +16,8 @@ namespace Principal
 {
     public partial class Login : Form
     {
+        public int iduser = 0;
+        int idrol = 0;
         public Login()
         {
             InitializeComponent();
@@ -23,60 +25,68 @@ namespace Principal
 
         private void btninciosesion_Click(object sender, EventArgs e)
         {
+
             try
             {
                 #region "Validaciones campos vacíos"
-                if (this.txtusuario.Text == "")
+                    if (this.txtusuario.Text == "")
                     {
                         MessageBox.Show("El campo Usuario no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-
-
                     if (this.txtcontraseña.Text == "")
                     {
                         MessageBox.Show("El campo Contraseña no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                #endregion
-                if (txtservidor.Text != "")
-                {
-                    CadenaConexion Servidor = new CadenaConexion();
-                    Servidor.GuardarServidor(txtservidor.Text);
-                }
-                    SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
-                    string CadenaSql = "SELECT Id_Usuario, Nombre_Usuario, Contraseña, Roles FROM Usuarios WHERE Nombre_Usuario= '" + txtusuario.Text + "' AND Contraseña= '" + txtcontraseña.Text + "'";
-                    SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
-                    _Conexion.Open();
-
-                    SqlDataReader leer = comando.ExecuteReader();
-                    int iduser = 0;
-                    int idrol = 0;
-                    string usuario= null;
-
-                    if (leer.Read() == true)
+                    if (txtservidor.Text != "")
                     {
-                        MessageBox.Show("Bienvenido " + txtusuario.Text + " ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        /*Obtener ID del Usuario*/
-                        iduser = leer.GetInt32(0);/*Id del Usuario*/
-                        usuario = leer.GetString(1);/*Id ROL del Usuario*/
-                        idrol = leer.GetInt32(3);/*Id ROL del Usuario*/
-                        //MessageBox.Show("User " + iduser.ToString() + " ", "Validacion de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
-                        Menu_Principal frmPrincipal = new Menu_Principal(iduser, idrol, usuario );
-                        frmPrincipal.Show();                   
-                        this.Hide();
+                        CadenaConexion Servidor = new CadenaConexion();
+                        Servidor.GuardarServidor(txtservidor.Text);
                     }
+                #endregion
 
-                    else
-                    {
+                SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
+                string CadenaSql = "SELECT Id_Usuario, Nombre_Usuario, Contraseña, Roles FROM Usuarios WHERE Nombre_Usuario= '" + txtusuario.Text + "' AND Contraseña= '" + txtcontraseña.Text + "'";
+                SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
+                _Conexion.Open();
+
+                SqlDataReader leer = comando.ExecuteReader();
+                
+                string usuario= null;
+
+                if (leer.Read() == true)
+                {
+                    MessageBox.Show("Bienvenido " + txtusuario.Text + " ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                    /*Obtener ID del Usuario*/
+                    iduser = leer.GetInt32(0);/*Id del Usuario*/
+                    usuario = leer.GetString(1);/*Id ROL del Usuario*/
+                    idrol = leer.GetInt32(3);/*Id ROL del Usuario*/
+                    //MessageBox.Show("User " + iduser.ToString() + " ", "Validacion de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _Conexion.Close();
+                    Menu_Principal frmPrincipal = new Menu_Principal(iduser, idrol, usuario);
+                    frmPrincipal.Show();                   
+                    this.Hide();
+                    using (_Conexion)
+                    {     
+                        string commandText = "INSERT INTO [dbo].[Bitacora_ES] VALUES (@Id_Usuario,@Fecha,@Tipo_Transaccion)";
+                        SqlCommand command = new SqlCommand(commandText, _Conexion);
+                        command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = iduser;
+                        command.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = DateTime.Now.ToString();
+                        command.Parameters.Add("@Tipo_Transaccion", SqlDbType.VarChar, 10).Value = "Entrada";
+                        _Conexion.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
                         MessageBox.Show("Error al ingresar los datos, Consulte al administrador", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-                    }
-                    _Conexion.Close();
-                    
                 }
+                 _Conexion.Close();
+                    
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -88,11 +98,5 @@ namespace Principal
         {
             Application.Exit();
         }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

@@ -97,6 +97,7 @@
             this.Cbo_Buscar.Size = new System.Drawing.Size(143, 21);
             this.Cbo_Buscar.TabIndex = 35;
             this.Cbo_Buscar.Text = "Seleccione una opción";
+            this.Cbo_Buscar.SelectedIndexChanged += new System.EventHandler(this.Cbo_Buscar_SelectedIndexChanged);
             // 
             // Txt_Buscar
             // 

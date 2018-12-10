@@ -11,9 +11,8 @@ namespace Negocios
 {
     public class ConsultasSQL
     {
-        private SqlConnection conexion = new SqlConnection("Data Source = DESKTOP-C5D2V8H; Initial Catalog = CITRA; Integrated Security = true");
+        private SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         private DataSet ds;
-
 
         #region "Buscar Cargos y Campo sugerido"
         public DataTable MostrarDatos()
@@ -865,8 +864,6 @@ namespace Negocios
         }
         #endregion
 
-
-
         #region "Bitácora Sucesos"
         public DataTable MostrarDatosSucesos()
         {
@@ -905,6 +902,48 @@ namespace Negocios
         {
             conexion.Open();
             SqlCommand cmd = new SqlCommand(string.Format("SELECT [Tipo_Transaccion] AS Transacción, [Tabla_Afectada] AS Tabla, [Fecha] AS Fecha, [Id_Registro] AS Id, [Nombre_Registro] AS Registro FROM [dbo].[Bitacora_Sucesos] WHERE Fecha like '%{0}%'", nombre), conexion);
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            ad.Fill(ds, "tabla");
+            conexion.Close();
+            return ds.Tables["tabla"];
+        }
+        #endregion
+        #region "Bitacora Entradas/Salidas"
+        public DataTable MostrarDatosES()
+        {
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand("SELECT [Id_Usuario] AS ID_Usuario,[Fecha] AS Fecha, [Tipo_Transaccion] AS Tipo_Transaccion FROM [dbo].[Bitacora_ES]", conexion);
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            ad.Fill(ds, "tabla");
+            conexion.Close();
+            return ds.Tables["tabla"];
+        }
+            public DataTable BuscarIDUsuario(string nombre)
+        {
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand(string.Format("SELECT [Id_Usuario] AS ID_Usuario,[Fecha] AS Fecha, [Tipo_Transaccion] AS Tipo_Transaccion FROM [dbo].[Bitacora_ES] WHERE Id_Usuario like '%{0}%'", nombre), conexion);
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            ad.Fill(ds, "tabla");
+            conexion.Close();
+            return ds.Tables["tabla"];
+        }
+        public DataTable BuscarFechaES(string nombre)
+        {
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand(string.Format("SELECT [Id_Usuario] AS ID_Usuario,[Fecha] AS Fecha, [Tipo_Transaccion] AS Tipo_Transaccion FROM [dbo].[Bitacora_ES] WHERE CONVERT(VARCHAR(25), Fecha, 126) LIKE '%{0}%'", nombre), conexion);
+            SqlDataAdapter ad = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            ad.Fill(ds, "tabla");
+            conexion.Close();
+            return ds.Tables["tabla"];
+        }
+        public DataTable BuscarTransaccionES(string nombre)
+        {
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand(string.Format("SELECT [Id_Usuario] AS ID_Usuario,[Fecha] AS Fecha, [Tipo_Transaccion] AS Tipo_Transaccion FROM [dbo].[Bitacora_ES] WHERE Tipo_Transaccion like '%{0}%'", nombre), conexion);
             SqlDataAdapter ad = new SqlDataAdapter(cmd);
             ds = new DataSet();
             ad.Fill(ds, "tabla");

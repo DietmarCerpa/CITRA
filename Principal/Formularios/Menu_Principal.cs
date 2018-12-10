@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presentacion;
 using System.Data.SqlClient;
 using System.Configuration;
+using Presentacion.Reportes.Estaticos;
 
 namespace Principal
 {
     public partial class Menu_Principal : Form
     {
+        int IDUsuario = 0;
+        int veces = 0;
         public Menu_Principal(int idusuario, int idRol, string usuario)
         {
             InitializeComponent();
             lb_usuario.Text = usuario;
             lbiduser.Text = idusuario.ToString();
             lbidrol.Text = idRol.ToString();
-
+            IDUsuario = idusuario;
             /*if (idRol == 3)
             { //Si es Estandar ocultar esos menú
                 mantenimientosToolStripMenuItem1.Visible = false;
@@ -29,13 +26,13 @@ namespace Principal
             } 
             
             MessageBox.Show("User " + idRol.ToString() + " ", "Validacion de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-        }
 
- 
-
+       }
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
+     
         private void Menu_Principal_Load(object sender, EventArgs e)
         {
-            SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 
             #region "Validación Alianza Inamu(Modulo 1)"
 
@@ -544,7 +541,29 @@ namespace Principal
 
             #endregion
 
+  
+        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (veces < 1 && DialogResult.Yes == MessageBox.Show("¿Esta seguro que desea abandonar el programa?", "CITRA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+            {
+                using (_Conexion)
+                {
 
+                    string commandText = "INSERT INTO [dbo].[Bitacora_ES] VALUES (@Id_Usuario,@Fecha,@Tipo_Transaccion)";
+                    SqlCommand command = new SqlCommand(commandText, _Conexion);
+                    command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = IDUsuario;
+                    command.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = DateTime.Now.ToString();
+                    command.Parameters.Add("@Tipo_Transaccion", SqlDbType.VarChar, 10).Value = "Salida";
+                    _Conexion.Open();
+                    command.ExecuteNonQuery();
+                    veces = 1;
+                }
+                _Conexion.Close();
+                Application.Exit();
+                Application.ExitThread();
+            }
+            else e.Cancel = true;
 
 
         }
@@ -609,7 +628,8 @@ namespace Principal
 
         private void entradasYSalidasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Bitacora_ES Frm_add = new Bitacora_ES();
+            Frm_add.ShowDialog(this);
         }
 
         private void transaccionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -683,20 +703,27 @@ namespace Principal
 
         private void círculosSocialesToolStripMenuItem_Click(object sender, EventArgs e)//reporte
         {
-            RCirculos_Sociales Frm_add = new RCirculos_Sociales();
+            //RCirculos_Sociales Frm_add = new RCirculos_Sociales();
+            //Frm_add.ShowDialog(this);
+            RepCirculos_Sociales Frm_add = new RepCirculos_Sociales();
             Frm_add.ShowDialog(this);
         }
 
         private void sociosEstratégicosToolStripMenuItem1_Click(object sender, EventArgs e)//reporte
         {
-            RSocios_Estrategicos Frm_add = new RSocios_Estrategicos();
+            //RSocios_Estrategicos Frm_add = new RSocios_Estrategicos();
+            //Frm_add.ShowDialog(this);
+            RepSocios_Estrategicos Frm_add = new RepSocios_Estrategicos();
             Frm_add.ShowDialog(this);
         }
 
         private void alianzaODSToolStripMenuItem_Click(object sender, EventArgs e)//reporte
         {
-            RAlianza_Ods Frm_add = new RAlianza_Ods();
+            //RAlianza_Ods Frm_add = new RAlianza_Ods();
+            //Frm_add.ShowDialog(this);
+            RepAlianza_Ods Frm_add = new RepAlianza_Ods();
             Frm_add.ShowDialog(this);
+
         }
 
         private void permisosPorMóduloToolStripMenuItem_Click(object sender, EventArgs e)
