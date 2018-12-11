@@ -560,8 +560,17 @@ namespace Principal
                     veces = 1;
                 }
                 _Conexion.Close();
-                Application.Exit();
-                Application.ExitThread();
+                try
+                {
+                    Application.ExitThread();
+                    Application.Exit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+              
+                
             }
             else e.Cancel = true;
 

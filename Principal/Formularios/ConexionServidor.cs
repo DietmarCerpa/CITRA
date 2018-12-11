@@ -61,21 +61,12 @@ namespace Principal.Formularios
         {
             #region "Validaciones campos vacíos"
 
-            if (txtServidorRemoto.Text.Equals(""))
+            if (txtServidorRemoto.Text.Equals("") || txtUsuarioRemoto.Text.Equals("") || txtPassRemoto.Text.Equals(""))
             {
-                MessageBox.Show("El campo Servidor no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar todos los datos solicitados ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (txtUsuarioRemoto.Text.Equals(""))
-            {
-                MessageBox.Show("El campo Usuario no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (txtPassRemoto.Text.Equals(""))
-            {
-                MessageBox.Show("El campo Contraseña no puede estar vacío ", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+
             #endregion "Validaciones campos vacios"
 
             CadenaConexion mServidor = new CadenaConexion();
@@ -89,7 +80,7 @@ namespace Principal.Formularios
             }
             else
             {
-                MessageBox.Show("Ha ocurrido un error", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ha ocurrido un error /n Verificar los datos del Servidor", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 
