@@ -17,10 +17,10 @@ namespace Presentacion
         /// <returns> retorna true (verdadero) si se logro conectar con el servidor y false (falso) si no se logra conectar</returns>
         public bool guardarServidorLocal(string txtServidor)
         {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            string nuevoservidor = "Data Source=" + txtServidor + ";Initial Catalog=CITRA;Integrated Security=True";
             try
-            {
-                string nuevoservidor = "Data Source=" + txtServidor + ";Initial Catalog=CITRA;Integrated Security=True";
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            {   
                 ConnectionStringSettings csSettings = new ConnectionStringSettings("MiConexion", nuevoservidor, "System.Data.SqlClient");
                 ConnectionStringsSection csSection = config.ConnectionStrings;
                 csSection.ConnectionStrings.Add(csSettings);
@@ -30,6 +30,10 @@ namespace Presentacion
             }
             catch
             {
+                config.ConnectionStrings.ConnectionStrings["Miconexion"].ConnectionString = nuevoservidor;
+                ConnectionStringsSection csSection = config.ConnectionStrings;
+                config.Save(ConfigurationSaveMode.Modified, true);
+                ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.SectionName);
                 return false;
             }
         }
@@ -44,10 +48,11 @@ namespace Presentacion
         /// <returns>retorna true (verdadero) si se logro conectar con el servidor y false (falso) si no se logra conectar</returns>
         public bool guardarServidorRemoto(string txtServidor, string txtUsuario, string txtPass)
         {
+            string nuevoservidor = "Data Source=" + txtServidor + ";Database=CITRA;User Id=" + txtUsuario + ";Password=" + txtPass;
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             try
             {
-                string nuevoservidor = "Data Source=" + txtServidor + ";Database=CITRA;User Id=" + txtUsuario + ";Password=" + txtPass;
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+               
                 ConnectionStringSettings csSettings = new ConnectionStringSettings("MiConexion", nuevoservidor, "System.Data.SqlClient");
                 ConnectionStringsSection csSection = config.ConnectionStrings;
                 csSection.ConnectionStrings.Add(csSettings);
@@ -57,7 +62,10 @@ namespace Presentacion
             }
             catch(Exception e)
             {
-               
+                config.ConnectionStrings.ConnectionStrings["Miconexion"].ConnectionString = nuevoservidor;
+                ConnectionStringsSection csSection = config.ConnectionStrings;       
+                config.Save(ConfigurationSaveMode.Modified, true);
+                ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.SectionName);
                 return false;
             }
         }
