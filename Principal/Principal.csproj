@@ -79,6 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formularios\ConexionServidor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ConexionServidor.Designer.cs">
+      <DependentUpon>ConexionServidor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\ConexionServidor.resx">
+      <DependentUpon>ConexionServidor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +160,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnud_0.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnud.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnud_01.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
