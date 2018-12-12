@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Sinirubes
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Sinirube pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Alianza_Sinirube] VALUES (@Id_Contacto_Sinirube, @Nombre_Contacto_Sinirube, @Nombre_Cargo, @Nombre_Organizacion, @Correo_Sinirube) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Sinirube", SqlDbType.Int).Value = pRegistro.Id_Contacto_Sinirube;
@@ -33,6 +33,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Sinirube", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Sinirube;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -53,7 +54,7 @@ namespace Acceso_Datos
                                      "SET  Id_Contacto_Sinirube= @Id_Contacto_Sinirube, Nombre_Contacto_Sinirube= @Nombre_Contacto_Sinirube, Nombre_Cargo= @Nombre_Cargo, Nombre_Organizacion= @Nombre_Organizacion, Correo_Sinirube= @Correo_Sinirube "
                                      + "WHERE Id_Contacto_Sinirube = @Id_Contacto_Sinirube";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Sinirube", SqlDbType.Int).Value = pRegistro.Id_Contacto_Sinirube;
@@ -63,6 +64,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Sinirube", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Sinirube;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -83,7 +85,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Sinirube] AS Id , [Nombre_Contacto_Sinirube] AS Nombre, [Nombre_Cargo] AS Cargo, [Nombre_Organizacion] AS Organización, [Correo_Sinirube] AS Correo  FROM [dbo].[Alianza_Sinirube] order by Nombre_Contacto_Sinirube asc ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -108,7 +110,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Alianza_Sinirube] WHERE Id_Contacto_Sinirube = @Id_Contacto_Sinirube";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Sinirube", SqlDbType.Int).Value = pRegistro.Id_Contacto_Sinirube;
@@ -118,6 +120,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Sinirube", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Sinirube;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -136,12 +139,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Alianza_Sinirube] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -160,7 +164,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Sinirube] AS Id, [Nombre_Contacto_Sinirube] AS Nombre, [Nombre_Cargo] AS Nombre_Cargo, [Nombre_Organizacion] AS Organización, [Correo_Sinirube] AS Correo FROM [dbo].[Alianza_Sinirube] WHERE Id_Contacto_Sinirube = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -188,7 +192,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Contacto_Sinirube] AS Id, [Nombre_Contacto_Sinirube] AS Nombre, [Nombre_Cargo] AS Cargo, [Nombre_Organizacion] AS Organización, [Correo_Sinirube] AS Correo FROM [dbo].[Alianza_Sinirube] WHERE Id_Contacto_Sinirube = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

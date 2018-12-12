@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Organizaciones
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Organizacion pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,13 +23,14 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Organizaciones] VALUES (@Id_Organizacion, @Nombre_Organizacion) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Organizacion", SqlDbType.Int).Value = pRegistro.Id_Organizacion;
                     command.Parameters.Add("@Nombre_Organizacion", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Organizacion;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                   
                 }
 
             }
@@ -50,13 +51,14 @@ namespace Acceso_Datos
                                      "SET  Id_Organizacion= @Id_Organizacion, Nombre_Organizacion = @Nombre_Organizacion "
                                      + "WHERE Id_Organizacion = @Id_Organizacion";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Organizacion", SqlDbType.Int).Value = pRegistro.Id_Organizacion;
                     command.Parameters.Add("@Nombre_Organizacion", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Organizacion;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -77,7 +79,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Organizacion] AS Id, [Nombre_Organizacion] AS Organización FROM [dbo].[Organizaciones] order by Nombre_Organizacion asc";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -102,12 +104,13 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Organizaciones] WHERE Id_Organizacion = @Id_Organizacion";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Organizacion", SqlDbType.Int).Value = pRegistro.Id_Organizacion;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -126,12 +129,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Organizaciones] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -150,7 +154,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Organizacion] AS Id, [Nombre_Organizacion] AS Organización FROM [dbo].[Organizaciones] WHERE Id_Organizacion = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -178,7 +182,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Organizacion] AS Id, [Nombre_Organizacion] AS Organización FROM [dbo].[Organizaciones] WHERE Id_Organizacion = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

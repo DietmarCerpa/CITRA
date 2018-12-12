@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Onus
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Onu pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Regional_Onu] VALUES (@Id_Contacto_Regional, @Nombre_Pais, @Nombre_Director, @Telefono1, @Telefono2, @Adrr, @Telefono3, @Fax, @Direccion_Director) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Regional", SqlDbType.Int).Value = pRegistro.Id_Contacto_Regional;
@@ -37,6 +37,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Direccion_Director", SqlDbType.VarChar, 200).Value = pRegistro.Direccion_Director;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -57,7 +58,7 @@ namespace Acceso_Datos
                                      "SET  Id_Contacto_Regional= @Id_Contacto_Regional, Nombre_Pais= @Nombre_Pais, Nombre_Director= @Nombre_Director, Telefono1= @Telefono1, Telefono2= @Telefono2, Adrr = @Adrr, Telefono3 = @Telefono3, Fax = @Fax, Direccion_Director= @Direccion_Director "
                                      + "WHERE Id_Contacto_Regional = @Id_Contacto_Regional";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Regional", SqlDbType.Int).Value = pRegistro.Id_Contacto_Regional;
@@ -71,6 +72,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Direccion_Director", SqlDbType.VarChar, 200).Value = pRegistro.Direccion_Director;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -91,7 +93,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Regional] AS Id , [Nombre_Pais] AS País, [Nombre_Director] AS Nombre, [Telefono1] AS Teléfono, [Telefono2] AS Teléfono2, [Adrr] AS ARRDRR, [Telefono3] AS Teléfono3, [Fax] AS Fax, [Direccion_Director] AS Dirección  FROM [dbo].[Regional_Onu] order by Nombre_Pais asc";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -116,7 +118,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Regional_Onu] WHERE Id_Contacto_Regional = @Id_Contacto_Regional";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Regional", SqlDbType.Int).Value = pRegistro.Id_Contacto_Regional;
@@ -130,6 +132,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Direccion_Director", SqlDbType.VarChar, 200).Value = pRegistro.Direccion_Director;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -148,12 +151,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Regional_Onu] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -172,7 +176,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Regional] AS Id , [Nombre_Pais] AS País, [Nombre_Director] AS Nombre, [Telefono1] AS Teléfono, [Telefono2] AS Teléfono2, [Adrr] AS ARRDRR, [Telefono3] AS Teléfono3, [Fax] AS Fax, [Direccion_Director] AS Dirección  FROM [dbo].[Regional_Onu] WHERE Id_Contacto_Regional = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -200,7 +204,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Contacto_Regional] AS Id , [Nombre_Pais] AS País, [Nombre_Director] AS Nombre, [Telefono1] AS Teléfono, [Telefono2] AS Teléfono2, [Adrr] AS ARRDRR, [Telefono3] AS Teléfono3, [Fax] AS Fax, [Direccion_Director] AS Dirección  FROM [dbo].[Regional_Onu] WHERE Id_Contacto_Regional = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Permisos
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public DataTable LlenarLista()//
         {
             DataTable dtConsulta = new DataTable();
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [id] AS Id, [nombre] AS Nombre  FROM [dbo].[Permisos] Order by Id asc ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

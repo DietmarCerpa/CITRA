@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Circulos_Sociales
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Circulo_Social pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Circulos_Sociales] VALUES (@Id_Circulo, @Nombre_Circulo  ,@Nombre_Organizacion, @Nombre_Departamento , @Correo_Circulo) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Circulo", SqlDbType.Int).Value = pRegistro.Id_Circulo;
@@ -33,6 +33,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Circulo", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Circulo;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    SqlConnection connection = new SqlConnection(vCadenaConexion)
                 }
 
             }
@@ -53,7 +54,7 @@ namespace Acceso_Datos
                                      "SET  Id_Circulo= @Id_Circulo, Nombre_Circulo= @Nombre_Circulo, Nombre_Organizacion= @Nombre_Organizacion, Nombre_Departamento= @Nombre_Departamento, Correo_Circulo= @Correo_Circulo "
                                      + "WHERE Id_Circulo = @Id_Circulo";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Circulo", SqlDbType.Int).Value = pRegistro.Id_Circulo;
@@ -63,6 +64,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Circulo", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Circulo;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -83,7 +85,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Circulo] AS Id, [Nombre_Circulo] AS Nombre, [Nombre_Organizacion] AS Organización, [Nombre_Departamento] AS Departamento, [Correo_Circulo] AS Correo  FROM [dbo].[Circulos_Sociales] order by Nombre_Circulo asc ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -108,7 +110,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Circulos_Sociales] WHERE Id_Circulo = @Id_Circulo";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Circulo", SqlDbType.Int).Value = pRegistro.Id_Circulo;
@@ -118,6 +120,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Circulo", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Circulo;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -136,12 +139,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Circulos_Sociales] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -160,7 +164,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Circulo] AS Id, [Nombre_Circulo] AS Nombre, [Nombre_Organizacion] AS Organización, [Nombre_Departamento] AS Departamento, [Correo_Circulo] AS Correo  FROM [dbo].[Circulos_Sociales] WHERE Id_Circulo = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -188,7 +192,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Circulo] AS Id, [Nombre_Circulo] AS Nombre, [Nombre_Organizacion] AS Organización, [Nombre_Departamento] AS Departamento, [Correo_Circulo] AS Correo  FROM [dbo].[Circulos_Sociales] WHERE Id_Circulo = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

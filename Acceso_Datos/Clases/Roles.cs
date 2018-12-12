@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Roles
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Rol pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Rol] VALUES (@Id_Rol, @Nombre_Rol, @Nivel) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Rol", SqlDbType.Int).Value = pRegistro.Id_Rol;
@@ -31,6 +31,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Nivel", SqlDbType.Int).Value = pRegistro.Nivel;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -51,7 +52,7 @@ namespace Acceso_Datos
                                      "SET  Id_Rol= @Id_Rol, Nombre_Rol = @Nombre_Rol, Nivel= @Nivel "
                                      + "WHERE Id_Rol = @Id_Rol";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Rol", SqlDbType.Int).Value = pRegistro.Id_Rol;
@@ -59,6 +60,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Nivel", SqlDbType.Int).Value = pRegistro.Nivel;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -79,7 +81,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Rol] AS Id, [Nombre_Rol] AS Nombre, [Nivel] AS Nivel  FROM [dbo].[Rol] Order by Id_Rol asc ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -104,12 +106,13 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Rol] WHERE Id_Rol = @Id_Rol";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Rol", SqlDbType.Int).Value = pRegistro.Id_Rol;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -128,12 +131,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Rol] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -152,7 +156,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Rol] AS Id, [Nombre_Rol] AS Nombre, [Nivel] AS Nivel  FROM [dbo].[Rol] WHERE Id_Rol = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -180,7 +184,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Rol] AS Id, [Nombre_Rol] AS Nombre, [Nivel] AS Nivel  FROM [dbo].[Rol] WHERE Id_Rol = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

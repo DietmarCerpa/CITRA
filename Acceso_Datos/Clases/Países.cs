@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Países
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Pais pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,13 +23,14 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Paises] VALUES (@Id_Pais, @Nombre_Pais) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Pais", SqlDbType.Int).Value = pRegistro.Id_Pais;
                     command.Parameters.Add("@Nombre_Pais", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Pais;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -50,13 +51,14 @@ namespace Acceso_Datos
                                      "SET  Id_Pais= @Id_Pais, Nombre_Pais = @Nombre_Pais "
                                      + "WHERE Id_Pais = @Id_Pais";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Pais", SqlDbType.Int).Value = pRegistro.Id_Pais;
                     command.Parameters.Add("@Nombre_Pais", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Pais;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -77,7 +79,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Pais] AS Id, [Nombre_Pais] AS País FROM [dbo].[Paises] order by Nombre_Pais asc";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -102,12 +104,13 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Paises] WHERE Id_Pais = @Id_Pais";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Pais", SqlDbType.Int).Value = pRegistro.Id_Pais;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -126,12 +129,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Paises] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -150,7 +154,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Pais] AS Id, [Nombre_Pais] AS País FROM [dbo].[Paises] WHERE Id_Pais = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -178,7 +182,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Pais] AS Id, [Nombre_Pais] AS País FROM [dbo].[Paises] WHERE Id_Pais = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

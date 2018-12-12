@@ -13,8 +13,8 @@ namespace Acceso_Datos
 {
     public class Inamus
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
-        
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
 
         public Int32 Insertar(Inamu pRegistro)
         {
@@ -25,7 +25,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Alianza_Inamu] VALUES (@Id_Contacto, @Nombre_Contacto, @Nombre_Cargo, @Nombre_Organizacion, @Correo_Inamu, @Telefono) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto", SqlDbType.Int).Value = pRegistro.Id_Contacto;
@@ -36,6 +36,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Telefono", SqlDbType.VarChar, 9).Value = pRegistro.Telefono;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -56,7 +57,7 @@ namespace Acceso_Datos
                                      "SET  Id_Contacto= @Id_Contacto, Nombre_Contacto= @Nombre_Contacto, Nombre_Cargo= @Nombre_Cargo, Nombre_Organizacion= @Nombre_Organizacion, Correo_Inamu= @Correo_Inamu, Telefono = @Telefono "
                                      + "WHERE Id_Contacto = @Id_Contacto";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto", SqlDbType.Int).Value = pRegistro.Id_Contacto;
@@ -67,6 +68,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Telefono", SqlDbType.VarChar, 9).Value = pRegistro.Telefono;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -87,7 +89,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto] AS Id, [Nombre_Contacto] AS Nombre, [Nombre_Cargo] AS Cargo, [Nombre_Organizacion] AS Organización, [Correo_Inamu] AS Correo, [Telefono] AS Teléfono  FROM [dbo].[Alianza_Inamu] order by Nombre_Contacto asc ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -114,7 +116,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Alianza_Inamu] WHERE Id_Contacto = @Id_Contacto";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto", SqlDbType.Int).Value = pRegistro.Id_Contacto;
@@ -125,6 +127,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Telefono", SqlDbType.VarChar, 9).Value = pRegistro.Telefono;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -143,12 +146,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Alianza_Inamu] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -167,7 +171,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto] AS Id, [Nombre_Contacto] AS Nombre, [Nombre_Cargo] AS Cargo, [Nombre_Organizacion] AS Organización, [Correo_Inamu] AS Correo, [Telefono] AS Teléfono  FROM [dbo].[Alianza_Inamu] WHERE Id_Contacto = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -197,7 +201,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Contacto] AS Id, [Nombre_Contacto] AS Nombre, [Nombre_Cargo] AS Cargo, [Nombre_Organizacion] AS Organización, [Correo_Inamu] AS Correo, [Telefono] AS Teléfono  FROM [dbo].[Alianza_Inamu] WHERE Id_Contacto = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

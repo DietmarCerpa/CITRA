@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Socios_Estrategicoss
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Socio_Estrategico pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Socios_Estrategicos] VALUES (@Id_Socio, @Nombre_Socio, @Nombre_Cargo, @Nombre_Organizacion, @Correo_Socio) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Socio", SqlDbType.Int).Value = pRegistro.Id_Socio;
@@ -33,6 +33,8 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Socio", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Socio;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
+
                 }
 
             }
@@ -53,7 +55,7 @@ namespace Acceso_Datos
                                      "SET  Id_Socio= @Id_Socio, Nombre_Socio= @Nombre_Socio, Nombre_Cargo= @Nombre_Cargo, Nombre_Organizacion= @Nombre_Organizacion, Correo_Socio= @Correo_Socio "
                                      + "WHERE Id_Socio = @Id_Socio";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Socio", SqlDbType.Int).Value = pRegistro.Id_Socio;
@@ -63,6 +65,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Socio", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Socio;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -108,7 +111,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Socios_Estrategicos] WHERE Id_Socio = @Id_Socio";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Socio", SqlDbType.Int).Value = pRegistro.Id_Socio;
@@ -118,6 +121,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Correo_Socio", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Socio;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -136,12 +140,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Socios_Estrategicos] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -160,7 +165,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Socio] AS Id , [Nombre_Socio] AS Nombre, [Nombre_Cargo] AS Cargo, [Nombre_Organizacion] AS Organización, [Correo_Socio] AS Correo  FROM [dbo].[Socios_Estrategicos] WHERE Id_Socio = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -188,7 +193,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Socio] AS Id , [Nombre_Socio] AS Nombre, [Nombre_Cargo] AS Cargo, [Nombre_Organizacion] AS Organización, [Correo_Socio] AS Correo  FROM [dbo].[Socios_Estrategicos] WHERE Id_Socio = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
