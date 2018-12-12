@@ -55,6 +55,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Reportar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // CB_Filtros
             // 
@@ -62,11 +63,13 @@
             this.CB_Filtros.Items.AddRange(new object[] {
             "Organización",
             "Cargo",
-            "Sector"});
+            "Sector",
+            "Sin Filtro"});
             this.CB_Filtros.Location = new System.Drawing.Point(16, 14);
             this.CB_Filtros.Name = "CB_Filtros";
             this.CB_Filtros.Size = new System.Drawing.Size(121, 21);
             this.CB_Filtros.TabIndex = 2;
+            this.CB_Filtros.Text = "Seleccionar Filtro";
             // 
             // txt_Filtrar
             // 

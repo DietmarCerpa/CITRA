@@ -173,6 +173,9 @@
       <DependentUpon>RBlac.cs</DependentUpon>
     </Compile>
     <Compile Include="CadenaConexion.cs" />
+    <Compile Include="CITRADataSet.cs">
+      <DependentUpon>CITRADataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CITRADataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

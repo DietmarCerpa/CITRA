@@ -37,7 +37,7 @@ namespace Presentacion.Reportes.Estaticos
 
             SqlDataAdapter SociosEst = new SqlDataAdapter(filtro, _Conexion);
             SociosEst.Fill(dataReport);
-            AOds SocEstReport = new AOds();
+            SocEst SocEstReport = new SocEst();
             SocEstReport.SetDataSource(dataReport);
             CR_SE.ReportSource = SocEstReport;
         }
