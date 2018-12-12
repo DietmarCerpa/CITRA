@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepAlianza_Ods));
             this.CR_AO = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.button1 = new System.Windows.Forms.Button();
             this.CB_Filtros = new System.Windows.Forms.ComboBox();
@@ -87,6 +88,9 @@
             this.Controls.Add(this.CB_Filtros);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.CR_AO);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RepAlianza_Ods";
             this.Text = "RepAlianza_Ods";
             this.ResumeLayout(false);
