@@ -196,7 +196,7 @@ namespace Acceso_Datos
                 }
 
                 vRegistro.Id_Pais = Convert.ToInt32(dtConsulta.Rows[0]["Id"]);
-                vRegistro.Nombre_Pais = dtConsulta.Rows[0]["Nombre"].ToString();
+                vRegistro.Nombre_Pais = dtConsulta.Rows[0]["País"].ToString();
 
                 return vRegistro;
 

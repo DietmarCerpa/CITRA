@@ -65,7 +65,6 @@ namespace Presentacion
                     frm.MostrarEliminar = false;
                     frm.MostrarConsultar = false;
                     frm.Controls["Txt_Id_Sector"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Sector"].Enabled = false;
                     frm.ShowDialog();
                     F_Sectores_Load(null, null);
                 }

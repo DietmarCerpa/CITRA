@@ -66,7 +66,6 @@ namespace Presentacion
                     frm.MostrarEliminar = false;
                     frm.MostrarConsultar = false;
                     frm.Controls["Txt_Id_Rol"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Rol"].Enabled = false;
                     frm.ShowDialog();
                     F_Roles_Load(null, null);
                 }

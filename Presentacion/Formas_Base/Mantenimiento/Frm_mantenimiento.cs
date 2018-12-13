@@ -59,7 +59,7 @@ namespace Presentacion
                     return;
 
                 if (EventSyncInvoke == null)
-                    EjecutarEvento(this, e);
+                    EjecutarEventallerto(this, e);
                 else
                     EventSyncInvoke.Invoke(EjecutarEvento, new object[] { this, e });
             }
@@ -196,5 +196,9 @@ namespace Presentacion
 
 
 
+        private void Frm_mantenimiento_Load(object sender, EventArgs e)
+        {
+
         }
+    }
 }

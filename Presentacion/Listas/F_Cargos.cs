@@ -71,7 +71,6 @@ namespace Presentacion
                     frm.MostrarEliminar = false;
                     frm.MostrarConsultar = false;
                     frm.Controls["Txt_Id_Cargo"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Cargo"].Enabled = false;
                     frm.ShowDialog();
                     F_Cargos_Load(null, null);
                 }

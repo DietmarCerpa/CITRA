@@ -69,7 +69,6 @@ namespace Presentacion
                     frm.MostrarEliminar = false;
                     frm.MostrarConsultar = false;
                     frm.Controls["Txt_Id_Pais"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Pais"].Enabled = false;
                     frm.ShowDialog();
                     F_Paises_Load(null, null);
                 }

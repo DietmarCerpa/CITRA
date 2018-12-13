@@ -66,7 +66,6 @@ namespace Presentacion
                     frm.MostrarEliminar = false;
                     frm.MostrarConsultar = false;
                     frm.Controls["Txt_Id_Departamento"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Departamento"].Enabled = false;
                     frm.ShowDialog();
                     F_Departamentos_Load(null, null);
                 }
@@ -107,7 +106,7 @@ namespace Presentacion
                     frm.MostrarConsultar = false;
                     frm.MostrarActualizar = false;
                     frm.Controls["Txt_Id_Departamento"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Pais"].Enabled = false;
+                    frm.Controls["Txt_Nombre_Departamento"].Enabled = false;
                     frm.ShowDialog();
                     F_Departamentos_Load(null, null);
                 }

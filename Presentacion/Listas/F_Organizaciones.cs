@@ -67,7 +67,6 @@ namespace Presentacion
                     frm.MostrarEliminar = false;
                     frm.MostrarConsultar = false;
                     frm.Controls["Txt_Id_Organizacion"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Organizacion"].Enabled = false;
                     frm.ShowDialog();
                     F_Organizaciones_Load(null, null);
                 }
@@ -97,11 +96,11 @@ namespace Presentacion
                 _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
-                    if (this.lstDatos.SelectedItems.Count == 0)
+                   /* if (this.lstDatos.SelectedItems.Count == 0)
                     {
                         MessageBox.Show("Debe de seleccionar una fila de la lista", "Validación de Datos", MessageBoxButtons.RetryCancel, MessageBoxIcon.Stop);
                         return;
-                    }
+                    }*/
                     BOrganizaciones frm = new BOrganizaciones();
                     frm.ShowDialog();
                 }
@@ -172,11 +171,11 @@ namespace Presentacion
                 _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
-                    if (this.lstDatos.SelectedItems.Count == 0)
+                  /*  if (this.lstDatos.SelectedItems.Count == 0)
                     {
                         MessageBox.Show("Debe de seleccionar una fila de la lista", "Validación de Datos", MessageBoxButtons.RetryCancel, MessageBoxIcon.Stop);
                         return;
-                    }
+                    }*/
                     mOrganizaciones frm = new mOrganizaciones();
                     frm.Modo = "A";
                     frm.MostrarEliminar = false;
