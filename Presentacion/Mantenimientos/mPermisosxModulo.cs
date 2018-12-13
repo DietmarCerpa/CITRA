@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using System.Configuration;
 using Entidades;
 using Negocios;
 
@@ -17,6 +10,7 @@ namespace Presentacion
 {
     public partial class mPermisosxModulo : Frm_mantenimiento
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public mPermisosxModulo()
         {
             InitializeComponent();
@@ -40,7 +34,7 @@ namespace Presentacion
             try
             {
                 #region "Muestra campo sugerido"
-                dgv.DataSource = sql.MostrarDatosModulos();
+                    dgv.DataSource = sql.MostrarPermisoModulo();
                 #endregion
 
                 IPermisosxModulos = new PermisosxModulos();
@@ -92,22 +86,15 @@ namespace Presentacion
                 {
                     case "A":
                         #region "Valida campos repetidos en BD"
-                        SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
                         string CadenaSql = "SELECT id_Rol,id_Modulo from Permisos_x_Modulo where id_Rol= '" + Cbo_Id_Rol.Text + "' AND id_Modulo = '" + Cbo_Id_Modulo.Text + "'";
                         SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
-
                         _Conexion.Open();
                         SqlDataReader leer = comando.ExecuteReader();
-
-
                         if (leer.Read() == true)
                         {
                             MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                            _Conexion.Close();
                             return;
-                        }
-
-                        else
-                        {
                         }
                         _Conexion.Close();
 
@@ -149,7 +136,6 @@ namespace Presentacion
         private void mPermisosxModulo_Evento_Salir(object sender, EventArgs e)
         {
             this.Close();
-
         }
 
         private void Leer()
@@ -192,7 +178,6 @@ namespace Presentacion
         private void LlenarComboIdRol()
         {
             DataTable dt = new DataTable();
-
             try
             {
                 dt = IRoles.LlenarLista();
@@ -204,10 +189,8 @@ namespace Presentacion
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
 
         private void LlenarComboIdModulo()
@@ -217,7 +200,6 @@ namespace Presentacion
             try
             {
                 dt = IModulos.LlenarLista();
-
                 this.Cbo_Id_Modulo.DataSource = dt;
                 this.Cbo_Id_Modulo.DisplayMember = "Id";
                 this.Cbo_Id_Modulo.ValueMember = "Id";
@@ -225,7 +207,6 @@ namespace Presentacion
             }
             catch (Exception)
             {
-
                 throw;
             }
 

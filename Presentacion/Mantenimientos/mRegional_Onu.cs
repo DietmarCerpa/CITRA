@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using System.Configuration;
 using Entidades;
 using Negocios;
 
@@ -17,6 +10,7 @@ namespace Presentacion
 {
     public partial class mRegional_Onu : Frm_mantenimiento
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public mRegional_Onu()
         {
             InitializeComponent();
@@ -38,10 +32,14 @@ namespace Presentacion
         {
             try
             {
-                #region "Muestra campo sugerido"
-                dgv.DataSource = sql.CSOnu();
-                #endregion
-
+                /*  #region "Muestra campo sugerido"
+                  if (Modo == "A")
+                  {
+                      dgv.Visible = true;
+                      dgv.DataSource = sql.CSOnu();
+                  }
+                  #endregion*/
+                dgv.Visible = false;
                 IOnus = new Onus();
                 IPaises = new Países();
                 LlenarComboNombrePais();
@@ -133,22 +131,15 @@ namespace Presentacion
                 {
                     case "A":
                         #region "Valida campos repetidos en BD"
-                        SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
                         string CadenaSql = "SELECT Id_Contacto_Regional,Nombre_Director from Regional_Onu where Id_Contacto_Regional= '" + Txt_Contacto_Regional.Text + "' OR Nombre_Director = '" + Txt_Nombre_Director.Text + "'";
                         SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
-
                         _Conexion.Open();
                         SqlDataReader leer = comando.ExecuteReader();
-
-
                         if (leer.Read() == true)
                         {
                             MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                            _Conexion.Close();
                             return;
-                        }
-
-                        else
-                        {
                         }
                         _Conexion.Close();
 
@@ -161,27 +152,20 @@ namespace Presentacion
                     case "M":
                         if (MessageBox.Show("Está seguro que desea actualizar los datos seleccionados?", "Modificación de datos", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            #region "Valida campos repetidos en BD"
-                            SqlConnection _Conexion1 = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
+                      /*      #region "Valida campos repetidos en BD"
                             string CadenaSql1 = "SELECT Id_Contacto_Regional,Nombre_Director from Regional_Onu where Id_Contacto_Regional= '" + Txt_Contacto_Regional.Text + "' OR Nombre_Director = '" + Txt_Nombre_Director.Text + "'";
-                            SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion1);
-
-                            _Conexion1.Open();
+                            SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion);
+                            _Conexion.Open();
                             SqlDataReader leer1 = comando1.ExecuteReader();
-
-
                             if (leer1.Read() == true)
                             {
                                 MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                                _Conexion.Close();
                                 return;
                             }
+                            _Conexion.Close();
 
-                            else
-                            {
-                            }
-                            _Conexion1.Close();
-
-                            #endregion
+                            #endregion*/
                             IOnus.Modificar(VOnu);
                             MessageBox.Show("Datos actualizados satisfactoriamente", "Actualización de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             Limpiar(this);

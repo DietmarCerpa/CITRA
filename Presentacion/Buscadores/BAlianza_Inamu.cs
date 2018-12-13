@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using Negocios;
 
 namespace Presentacion
@@ -36,13 +28,13 @@ namespace Presentacion
 
             if (Cbo_Buscar.Text == "2. Cargo")
             {
-                if (Txt_Buscar.Text != "") dgv.DataSource = sql.BuscarUsuarioCedula(Txt_Buscar.Text);
+                if (Txt_Buscar.Text != "") dgv.DataSource = sql.BuscarInamuCargo(Txt_Buscar.Text);
                 else dgv.DataSource = sql.MostrarDatosInamu();
             }
 
             if (Cbo_Buscar.Text == "3. Organización")
             {
-                if (Txt_Buscar.Text != "") dgv.DataSource = sql.BuscarRblacDepartamento(Txt_Buscar.Text);
+                if (Txt_Buscar.Text != "") dgv.DataSource = sql.BuscarInamuOrganizacion(Txt_Buscar.Text);
                 else dgv.DataSource = sql.MostrarDatosInamu();
             }
         }

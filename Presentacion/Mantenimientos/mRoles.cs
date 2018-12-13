@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using System.Configuration;
 using Entidades;
 using Negocios;
 
@@ -17,6 +9,7 @@ namespace Presentacion
 {
     public partial class mRoles : Frm_mantenimiento
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public mRoles()
         {
             InitializeComponent();
@@ -37,9 +30,13 @@ namespace Presentacion
         {
             try
             {
-                #region "Muestra campo sugerido"
-                dgv.DataSource = sql.CSRol();
-                #endregion
+              /*  #region "Muestra campo sugerido"
+                if (Modo == "A")
+                {
+                    dgv.Visible = true;
+                    dgv.DataSource = sql.CSRol();
+                }
+                #endregion*/
 
                 IRoles = new Roles();
 
@@ -90,24 +87,17 @@ namespace Presentacion
                 {
                     case "A":
                         #region "Valida campos repetidos en BD"
-                        SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
-
                         string CadenaSql = "SELECT Id_Rol,Nombre_Rol from Rol where Id_Rol= '" + Txt_Id_Rol.Text + "' OR Nombre_Rol = '" + Txt_Nombre_Rol.Text + "'";
                         SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
                         _Conexion.Open();
                         SqlDataReader leer = comando.ExecuteReader();
-
                         if (leer.Read() == true)
                         {
                             MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                            _Conexion.Close();
                             return;
                         }
-
-                        else
-                        {
-                        }
                         _Conexion.Close();
-
                         #endregion
                         IRoles.Insertar(VRol);
                         MessageBox.Show("Datos ingresados satisfactoriamente", "Ingreso de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -117,26 +107,19 @@ namespace Presentacion
                     case "M":
                         if (MessageBox.Show("Está seguro que desea actualizar los datos seleccionados?", "Modificación de datos", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            #region "Valida campos repetidos en BD"
-                            SqlConnection _Conexion1 = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
-
+                        /*    #region "Valida campos repetidos en BD"
                             string CadenaSql1 = "SELECT Id_Rol,Nombre_Rol from Rol where Id_Rol= '" + Txt_Id_Rol.Text + "' OR Nombre_Rol = '" + Txt_Nombre_Rol.Text + "'";
-                            SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion1);
-                            _Conexion1.Open();
+                            SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion);
+                            _Conexion.Open();
                             SqlDataReader leer1 = comando1.ExecuteReader();
-
                             if (leer1.Read() == true)
                             {
                                 MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                                _Conexion.Close();
                                 return;
                             }
-
-                            else
-                            {
-                            }
-                            _Conexion1.Close();
-
-                            #endregion
+                            _Conexion.Close();
+                           #endregion*/
                             IRoles.Modificar(VRol);
                             MessageBox.Show("Datos actualizados satisfactoriamente", "Actualización de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             Limpiar(this);

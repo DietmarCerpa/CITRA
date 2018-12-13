@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using System.Configuration;
 using Entidades;
 using Negocios;
 
@@ -17,6 +9,7 @@ namespace Presentacion
 {
     public partial class mDepartamentos : Frm_mantenimiento
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public mDepartamentos()
         {
             InitializeComponent();
@@ -37,9 +30,14 @@ namespace Presentacion
         {
             try
             {
-                #region "Muestra campo sugerido"
-                dgv.DataSource = sql.CSDepartamento();
-                #endregion
+                /*    #region "Muestra campo sugerido"
+                    if (Modo == "A")
+                    {
+                        dgv.Visible = true;
+                        dgv.DataSource = sql.CSDepartamento();
+                    }
+                    #endregion*/
+                dgv.Visible = false;
                 IDepartamentos = new Departamentos();
 
                 if (Modo != "A")
@@ -83,22 +81,15 @@ namespace Presentacion
                 {
                     case "A":
                         #region "Valida campos repetidos en BD"
-                        SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
-
                         string CadenaSql = "SELECT Id_Departamento,Nombre_Departamento from Departamentos where Id_Departamento= '" + Txt_Id_Departamento.Text + "' OR Nombre_Departamento = '" + Txt_Nombre_Departamento.Text + "'";
-
                         SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
                         _Conexion.Open();
                         SqlDataReader leer = comando.ExecuteReader();
-
                         if (leer.Read() == true)
                         {
                             MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                            _Conexion.Close();
                             return;
-                        }
-
-                        else
-                        {
                         }
                         _Conexion.Close();
 
@@ -112,27 +103,20 @@ namespace Presentacion
                     case "M":
                         if (MessageBox.Show("Está seguro que desea actualizar los datos seleccionados?", "Modificación de datos", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            #region "Valida campos repetidos en BD"
-                            SqlConnection _Conexion1 = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
-
+                         /*   #region "Valida campos repetidos en BD"
                             string CadenaSql1 = "SELECT Id_Departamento,Nombre_Departamento from Departamentos where Id_Departamento= '" + Txt_Id_Departamento.Text + "' OR Nombre_Departamento = '" + Txt_Nombre_Departamento.Text + "'";
-
-                            SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion1);
-                            _Conexion1.Open();
+                            SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion);
+                            _Conexion.Open();
                             SqlDataReader leer1 = comando1.ExecuteReader();
-
                             if (leer1.Read() == true)
                             {
                                 MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                                _Conexion.Close();
                                 return;
                             }
+                            _Conexion.Close();
 
-                            else
-                            {
-                            }
-                            _Conexion1.Close();
-
-                            #endregion
+                            #endregion*/
                             IDepartamentos.Modificar(VDepartamento);
                             MessageBox.Show("Datos actualizados satisfactoriamente", "Actualización de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             Limpiar(this);

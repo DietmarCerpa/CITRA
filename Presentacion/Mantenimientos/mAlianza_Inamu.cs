@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using System.Configuration;
 using Entidades;
 using Negocios;
 
@@ -18,6 +11,7 @@ namespace Presentacion
 {
     public partial class mAlianza_Inamu : Frm_mantenimiento
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public mAlianza_Inamu()
         {
             InitializeComponent();
@@ -40,10 +34,14 @@ namespace Presentacion
         {
             try
             {
-                #region "Muestra campo sugerido"
-                dgv.DataSource = sql.CSInamu();
-                #endregion
-
+                /*    #region "Muestra campo sugerido"
+                    if (Modo == "A")
+                    {
+                        dgv.Visible = true;
+                        dgv.DataSource = sql.CSInamu();
+                    }
+                    #endregion*/
+                dgv.Visible = false;
                 IInamus = new Inamus();
                 ICargos = new Cargos();
                 IOrganizaciones = new Organizaciones();
@@ -120,61 +118,36 @@ namespace Presentacion
 
                 switch (Modo)
                 {
+                    
                     case "A":
-                        #region "Valida campos repetidos en BD"
-                        SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
+                        #region "Valida campos repetidos en BD"      
                         string CadenaSql = "SELECT Id_Contacto,Nombre_Contacto from Alianza_Inamu where Id_Contacto= '" + Txt_Id_Contacto.Text + "' OR Nombre_Contacto = '" + Txt_Nombre_Contacto.Text + "'";                       
                         SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);                       
                         _Conexion.Open();
                         SqlDataReader leer = comando.ExecuteReader();
-
-
                         if (leer.Read() == true)
                         {
                             MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                            _Conexion.Close();
                             return;
-                        }
-
-                        else
-                        {
                         }
                         _Conexion.Close();
 
                         #endregion
-                        
+
                         IInamus.Insertar(VInamu);
                         MessageBox.Show("Datos ingresados satisfactoriamente", "Ingreso de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         Limpiar(this);
                         this.Close();
                         break;
                     case "M":
+                        
                         if (MessageBox.Show("Está seguro que desea actualizar los datos seleccionados?", "Modificación de datos", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            #region "Valida campos repetidos en BD"
-                            SqlConnection _Conexion1 = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
-                            string CadenaSql1 = "SELECT Id_Contacto,Nombre_Contacto from Alianza_Inamu where Id_Contacto= '" + Txt_Id_Contacto.Text + "' OR Nombre_Contacto = '" + Txt_Nombre_Contacto.Text + "'";
-                            SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion1);
-                            _Conexion1.Open();
-                            SqlDataReader leer1 = comando1.ExecuteReader();
-
-
-                            if (leer1.Read() == true)
-                            {
-                                MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
-                                return;
-                            }
-
-                            else
-                            {
-                            }
-                            _Conexion1.Close();
-
-                            #endregion
+                        {   
                             IInamus.Modificar(VInamu);
                             MessageBox.Show("Datos actualizados satisfactoriamente", "Actualización de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             Limpiar(this);
                             this.Close();
-
                         }
                         break;
                     case "E":

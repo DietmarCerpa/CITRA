@@ -197,6 +197,7 @@
             this.dgv.RowTemplate.Height = 24;
             this.dgv.Size = new System.Drawing.Size(153, 65);
             this.dgv.TabIndex = 40;
+            this.dgv.Visible = false;
             // 
             // mAlianza_Inamu
             // 

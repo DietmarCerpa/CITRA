@@ -32,8 +32,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Nombre_Departamento", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Departamento;
                     command.Parameters.Add("@Correo_Circulo", SqlDbType.VarChar, 80).Value = pRegistro.Correo_Circulo;
                     connection.Open();
-                    FilasAfectadas = command.ExecuteNonQuery();
-                    SqlConnection connection = new SqlConnection(vCadenaConexion)
+                    FilasAfectadas = command.ExecuteNonQuery();              
                 }
 
             }

@@ -574,7 +574,7 @@ namespace Negocios
         public DataTable CSInamu()
         {
             conexion.Open();
-            SqlCommand cmd = new SqlCommand(string.Format("SELECT COUNT (Id_Contacto)+ 1 AS 'Campo Sugerido' FROM [dbo].[Alianza_Inamu]"), conexion);
+            SqlCommand cmd = new SqlCommand(string.Format("SELECT COUNT (Id_Contacto) + 1 AS 'Campo Sugerido' FROM [dbo].[Alianza_Inamu]"), conexion);
             SqlDataAdapter ad = new SqlDataAdapter(cmd);
             ds = new DataSet();
             ad.Fill(ds, "tabla");
