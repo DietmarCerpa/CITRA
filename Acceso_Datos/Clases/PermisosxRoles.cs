@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class PermisosxRoles
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(PermisoxRol pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,13 +23,14 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Permisos_x_Rol] VALUES (@id_Rol, @id_Permiso) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@id_Rol", SqlDbType.Int).Value = pRegistro.id_Rol;
                     command.Parameters.Add("@id_Permiso", SqlDbType.Int).Value = pRegistro.id_Permiso;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -50,13 +51,14 @@ namespace Acceso_Datos
                                      "SET  id_Rol= @id_Rol, id_Permiso = @id_Permiso "
                                      + "WHERE id_Rol = @id_Rol";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@id_Rol", SqlDbType.Int).Value = pRegistro.id_Rol;
                     command.Parameters.Add("@id_Permiso", SqlDbType.Int).Value = pRegistro.id_Permiso;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -77,7 +79,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [id_Rol] AS Rol, [id_Permiso] AS Permiso FROM [dbo].[Permisos_x_Rol] Order by id_Rol asc ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -102,12 +104,13 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Permisos_x_Rol] WHERE id_Rol = @id_Rol";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@id_Rol", SqlDbType.Int).Value = pRegistro.id_Rol;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -126,12 +129,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Permisos_x_Rol] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -150,7 +154,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [id_Rol] AS Rol, [id_Permiso] AS Permiso FROM [dbo].[Permisos_x_Rol] where id_Rol = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -178,7 +182,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [id_Rol] AS Rol, [id_Permiso] AS Permiso FROM [dbo].[Permisos_x_Rol] where id_Rol = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

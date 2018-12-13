@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Camaras_Privadas
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Camara_Privada pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Camaras_Privadas] VALUES (@Id_Contacto_Camara, @Nombre_Contacto_Camara  ,@Nombre_Organizacion, @Nombre_Cargo , @Correo_Camara, @Telefono, @Extension) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Camara", SqlDbType.Int).Value = pRegistro.Id_Contacto_Camara;
@@ -35,6 +35,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = pRegistro.Extension;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -42,6 +43,7 @@ namespace Acceso_Datos
             {
                 throw ex;
             }
+            
             return FilasAfectadas;
         }
 
@@ -55,7 +57,7 @@ namespace Acceso_Datos
                                      "SET  Id_Contacto_Camara= @Id_Contacto_Camara, Nombre_Contacto_Camara= @Nombre_Contacto_Camara, Nombre_Organizacion= @Nombre_Organizacion, Nombre_Cargo= @Nombre_Cargo, Correo_Camara= @Correo_Camara, Telefono = @Telefono, Extension= @Extension "
                                      + "WHERE Id_Contacto_Camara = @Id_Contacto_Camara";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Camara", SqlDbType.Int).Value = pRegistro.Id_Contacto_Camara;
@@ -67,14 +69,13 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = pRegistro.Extension;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-
+            }    
             return FilasAfectadas;
         }
 
@@ -87,7 +88,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Camara] AS Id, [Nombre_Contacto_Camara] AS Nombre, [Nombre_Organizacion] AS Organización, [Nombre_Cargo] AS Cargo, [Correo_Camara] AS Correo, [Telefono] AS Teléfono, [Extension] AS Extensión  FROM [dbo].[Camaras_Privadas] order by Nombre_Contacto_Camara asc";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -112,7 +113,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Camaras_Privadas] WHERE Id_Contacto_Camara = @Id_Contacto_Camara";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Camara", SqlDbType.Int).Value = pRegistro.Id_Contacto_Camara;
@@ -124,6 +125,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = pRegistro.Extension;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -142,12 +144,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Camaras_Privadas] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -166,7 +169,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Camara] AS Id, [Nombre_Contacto_Camara] AS Nombre, [Nombre_Organizacion] AS Organización, [Nombre_Cargo] AS Cargo, [Correo_Camara] AS Correo , [Telefono] AS Teléfono, [Extension] AS Extensión FROM [dbo].[Camaras_Privadas] WHERE Id_Contacto_Camara = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -194,7 +197,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Contacto_Camara] AS Id, [Nombre_Contacto_Camara] AS Nombre, [Nombre_Organizacion] AS Organización, [Nombre_Cargo] AS Cargo, [Correo_Camara] AS Correo, [Telefono] AS Teléfono, [Extension] AS Extensión  FROM [dbo].[Camaras_Privadas] WHERE Id_Contacto_Camara = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

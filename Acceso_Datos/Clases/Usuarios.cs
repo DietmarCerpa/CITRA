@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Usuarios
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Usuario pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Usuarios] VALUES (@Id_Usuario, @Nombre_Persona, @Cedula, @Roles , @Email, @Nombre_Usuario, @Contraseña) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = pRegistro.Id_Usuario;
@@ -35,6 +35,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Contraseña", SqlDbType.VarChar, 20).Value = pRegistro.Contraseña;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -55,7 +56,7 @@ namespace Acceso_Datos
                                      "SET  Id_Usuario= @Id_Usuario, Nombre_Persona= @Nombre_Persona, Cedula= @Cedula, Roles= @Roles, Email= @Email, Nombre_Usuario = @Nombre_Usuario, Contraseña= @Contraseña "
                                      + "WHERE Id_Usuario = @Id_Usuario";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = pRegistro.Id_Usuario;
@@ -67,6 +68,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Contraseña", SqlDbType.VarChar, 20).Value = pRegistro.Contraseña;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -87,7 +89,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Usuario] AS Id, [Nombre_Persona] AS Nombre, [Cedula] AS Cédula, [Roles] AS Rol, [Email] AS Correo, [Nombre_Usuario] AS Usuario, [Contraseña] AS Contraseña  FROM [dbo].[Usuarios] order by Nombre_Persona asc";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -112,7 +114,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Usuarios] WHERE Id_Usuario = @Id_Usuario";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Usuario", SqlDbType.Int).Value = pRegistro.Id_Usuario;
@@ -124,6 +126,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Contraseña", SqlDbType.VarChar, 20).Value = pRegistro.Contraseña;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -142,12 +145,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Usuarios] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -166,7 +170,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Usuario] AS Id, [Nombre_Persona] AS Nombre, [Cedula] AS Cédula, [Roles] AS Rol, [Email] AS Correo, [Nombre_Usuario] AS Usuario, [Contraseña] AS Contraseña FROM [dbo].[Usuarios] WHERE Id_Usuario = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -194,7 +198,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Usuario] AS Id, [Nombre_Persona] AS Nombre, [Cedula] AS Cédula, [Roles] AS Rol, [Email] AS Correo, [Nombre_Usuario] AS Usuario, [Contraseña] AS Contraseña FROM [dbo].[Usuarios] WHERE Id_Usuario = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

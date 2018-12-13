@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using System.Configuration;
 using Entidades;
 using Negocios;
 
@@ -17,11 +10,11 @@ namespace Presentacion
 {
     public partial class mCirculos_Sociales : Frm_mantenimiento
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public mCirculos_Sociales()
         {
             InitializeComponent();
         }
-
         #region "Declaracion de Variables"
         Circulos_Sociales ICirculos_Sociales;
         Circulo_Social VCirculo_Social;
@@ -39,10 +32,14 @@ namespace Presentacion
         {
             try
             {
-                #region "Muestra campo sugerido"
-                dgv.DataSource = sql.CSCirculo();
-                #endregion
-
+                /*     #region "Muestra campo sugerido"
+                     if (Modo == "A")
+                     {
+                         dgv.Visible = true;
+                         dgv.DataSource = sql.CSCirculo();
+                     }
+                     #endregion*/
+                dgv.Visible = false;
                 ICirculos_Sociales = new Circulos_Sociales();
                 IDepartamentos = new Departamentos();
                 IOrganizaciones = new Organizaciones();
@@ -115,22 +112,15 @@ namespace Presentacion
                   {
                       case "A":
                           #region "Valida campos repetidos en BD"
-                          SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
                           string CadenaSql = "SELECT Id_Circulo,Nombre_Circulo from Circulos_Sociales where Id_Circulo= '" + Txt_Id_Circulo.Text + "' OR Nombre_Circulo = '" + Txt_Nombre_Circulo.Text + "'";
-                          SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
-
+                          SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);                  
                           _Conexion.Open();
                           SqlDataReader leer = comando.ExecuteReader();
-
-
                           if (leer.Read() == true)
                           {
                               MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
-                              return;
-                          }
-
-                          else
-                          {
+                            _Conexion.Close();
+                            return;
                           }
                           _Conexion.Close();
 
@@ -143,27 +133,20 @@ namespace Presentacion
                       case "M":
                           if (MessageBox.Show("Está seguro que desea actualizar los datos seleccionados?", "Modificación de datos", MessageBoxButtons.YesNo) == DialogResult.Yes)
                           {
-                              #region "Valida campos repetidos en BD"
-                              SqlConnection _Conexion1 = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
+                      /*        #region "Valida campos repetidos en BD"
                               string CadenaSql1 = "SELECT Id_Circulo,Nombre_Circulo from Circulos_Sociales where Id_Circulo= '" + Txt_Id_Circulo.Text + "' OR Nombre_Circulo = '" + Txt_Nombre_Circulo.Text + "'";
-                              SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion1);
-
-                              _Conexion1.Open();
+                              SqlCommand comando1 = new SqlCommand(CadenaSql1, _Conexion); 
+                              _Conexion.Open();
                               SqlDataReader leer1 = comando1.ExecuteReader();
-
-
                               if (leer1.Read() == true)
                               {
                                   MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
-                                  return;
+                                _Conexion.Close();
+                                return;
                               }
+                              _Conexion.Close();
 
-                              else
-                              {
-                              }
-                              _Conexion1.Close();
-
-                              #endregion
+                              #endregion*/
                               ICirculos_Sociales.Modificar(VCirculo_Social);
                               MessageBox.Show("Datos actualizados satisfactoriamente", "Actualización de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                               Limpiar(this);

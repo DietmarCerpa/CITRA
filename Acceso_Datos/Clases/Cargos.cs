@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Cargos
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+       static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Cargo pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,13 +23,14 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Cargos] VALUES (@Id_Cargo,@Nombre_Cargo) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Cargo", SqlDbType.Int).Value = pRegistro.Id_Cargo;
                     command.Parameters.Add("@Nombre_Cargo", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Cargo;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -50,13 +51,14 @@ namespace Acceso_Datos
                                      "SET  Id_Cargo= @Id_Cargo, Nombre_Cargo = @Nombre_Cargo "
                                      + "WHERE Id_Cargo = @Id_Cargo";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Cargo", SqlDbType.Int).Value = pRegistro.Id_Cargo;
                     command.Parameters.Add("@Nombre_Cargo", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Cargo;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -77,7 +79,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Cargo] AS Id, [Nombre_Cargo] AS Cargo FROM [dbo].[Cargos] Order by Nombre_Cargo asc ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -102,12 +104,13 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Cargos] WHERE Id_Cargo = @Id_Cargo";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Cargo", SqlDbType.Int).Value = pRegistro.Id_Cargo;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -126,12 +129,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Cargos] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -150,7 +154,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Cargo] AS Id, [Nombre_Cargo] AS Cargo FROM [dbo].[Cargos] WHERE Id_Cargo = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -178,7 +182,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Cargo] AS Id, [Nombre_Cargo] AS Cargo FROM [dbo].[Cargos] WHERE Id_Cargo = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -213,7 +217,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Cargo] AS Id, [Nombre_Cargo] AS Cargo FROM [dbo].[Cargos] WHERE Nombre = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -241,7 +245,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Cargo] AS Id, [Nombre_Cargo] AS Cargo FROM [dbo].[Cargos] WHERE Id_Cargo = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

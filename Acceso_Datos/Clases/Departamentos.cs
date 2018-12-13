@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Departamentos
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(Departamento pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,13 +23,14 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Departamentos] VALUES (@Id_Departamento, @Nombre_Departamento) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Departamento", SqlDbType.Int).Value = pRegistro.Id_Departamento;
                     command.Parameters.Add("@Nombre_Departamento", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Departamento;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -51,13 +52,14 @@ namespace Acceso_Datos
                                      "SET  Id_Departamento= @Id_Departamento, Nombre_Departamento = @Nombre_Departamento "
                                      + "WHERE Id_Departamento = @Id_Departamento";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Departamento", SqlDbType.Int).Value = pRegistro.Id_Departamento;
                     command.Parameters.Add("@Nombre_Departamento", SqlDbType.VarChar, 80).Value = pRegistro.Nombre_Departamento;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -78,7 +80,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Departamento] AS Id, [Nombre_Departamento] AS Departamento FROM [dbo].[Departamentos] order by Nombre_Departamento";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -104,12 +106,13 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Departamentos] WHERE Id_Departamento = @Id_Departamento";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Departamento", SqlDbType.Int).Value = pRegistro.Id_Departamento;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -128,12 +131,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Departamentos] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -153,7 +157,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Departamento] AS Id, [Nombre_Departamento] AS Departamento FROM [dbo].[Departamentos] WHERE Id_Departamento = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -182,7 +186,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Departamento] AS Id, [Nombre_Departamento] AS Departamento FROM [dbo].[Departamentos] WHERE Id_Departamento = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

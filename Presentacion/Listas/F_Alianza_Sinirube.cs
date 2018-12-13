@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Entidades;
+using System.Configuration;
 using Negocios;
 
 namespace Presentacion
 {
     public partial class F_Alianza_Sinirube : Frm_Lista_Base
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public F_Alianza_Sinirube(int idusuario, int idRol, string usuario)
         {
             InitializeComponent();
@@ -47,18 +42,17 @@ namespace Presentacion
         private void F_Alianza_Sinirube_Evento_Actualizar_1(object sender, EventArgs e)
         {
             try
-            {
-                SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
+            { 
                 string CadenaSql = "SELECT  [CITRA].[dbo].Usuarios.Id_Usuario from [CITRA].[dbo].Permisos_x_Rol " +
                                    " INNER JOIN [CITRA].[dbo].Usuarios ON [CITRA].[dbo].Usuarios.Roles = Id_Rol " +
                                    " WHERE [CITRA].[dbo].Permisos_x_Rol.Id_Permiso = 3 and [CITRA].[dbo].Usuarios.Id_Usuario = " + lbiduser.Text;
                 /*MessageBox.Show(CadenaSql);*/
                 SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
                 _Conexion.Open();
-                SqlDataReader leer = comando.ExecuteReader();
+                SqlDataReader leer = comando.ExecuteReader();    
                 int resultado = 0;
                 if (leer.Read() == true) { resultado = leer.GetInt32(0);/*devuelve algo*/}
-
+                _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
                     if (this.lstDatos.SelectedItems.Count == 0)
@@ -73,10 +67,12 @@ namespace Presentacion
                     frm.MostrarEliminar = false;
                     frm.MostrarConsultar = false;
                     frm.Controls["Txt_Id_Contacto_Sinirube"].Enabled = false;
+                    frm.Controls["Txt_Nombre_Contacto_Sinirube"].Enabled = false;                  
                     frm.ShowDialog();
                     F_Alianza_Sinirube_Load(null, null);
                 }
                 else { MessageBox.Show("El usuario no tiene permisos para realizar esta acción", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error); ; return; }
+               
             }
             catch (Exception ex)
             {
@@ -88,7 +84,6 @@ namespace Presentacion
         {
             try
             {
-                SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
                 string CadenaSql = "SELECT  [CITRA].[dbo].Usuarios.Id_Usuario from [CITRA].[dbo].Permisos_x_Rol " +
                                    " INNER JOIN [CITRA].[dbo].Usuarios ON [CITRA].[dbo].Usuarios.Roles = Id_Rol " +
                                    " WHERE [CITRA].[dbo].Permisos_x_Rol.Id_Permiso = 4 and [CITRA].[dbo].Usuarios.Id_Usuario = " + lbiduser.Text;
@@ -98,13 +93,14 @@ namespace Presentacion
                 SqlDataReader leer = comando.ExecuteReader();
                 int resultado = 0;
                 if (leer.Read() == true) { resultado = leer.GetInt32(0);/*devuelve algo*/}
-
+                _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
                     BAlianza_Sinirube frm = new BAlianza_Sinirube();
                     frm.ShowDialog();
                 }
                 else { MessageBox.Show("El usuario no tiene permisos para realizar esta acción", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error); ; return; }
+               
             }
             catch (Exception ex)
             {
@@ -116,17 +112,16 @@ namespace Presentacion
         {
             try
             {
-                SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
                 string CadenaSql = "SELECT  [CITRA].[dbo].Usuarios.Id_Usuario from [CITRA].[dbo].Permisos_x_Rol " +
                                    " INNER JOIN [CITRA].[dbo].Usuarios ON [CITRA].[dbo].Usuarios.Roles = Id_Rol " +
                                    " WHERE [CITRA].[dbo].Permisos_x_Rol.Id_Permiso = 2 and [CITRA].[dbo].Usuarios.Id_Usuario = " + lbiduser.Text;
                 /*MessageBox.Show(CadenaSql);*/
                 SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
                 _Conexion.Open();
-                SqlDataReader leer = comando.ExecuteReader();
+                SqlDataReader leer = comando.ExecuteReader(); 
                 int resultado = 0;
                 if (leer.Read() == true) { resultado = leer.GetInt32(0);/*devuelve algo*/}
-
+                _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
                     if (this.lstDatos.SelectedItems.Count == 0)
@@ -141,7 +136,7 @@ namespace Presentacion
                     frm.MostrarConsultar = false;
                     frm.MostrarActualizar = false;
                     frm.Controls["Txt_Id_Contacto_Sinirube"].Enabled = false;
-                    frm.Controls["Txt_Nombre_Contacto_Sinirubue"].Enabled = false;
+                    frm.Controls["Txt_Nombre_Contacto_Sinirube"].Enabled = false;
                     frm.Controls["Cbo_Nombre_Organizacion"].Enabled = false;
                     frm.Controls["Cbo_Nombre_Cargo"].Enabled = false;
                     frm.Controls["Txt_Correo_Sinirube"].Enabled = false;
@@ -149,6 +144,7 @@ namespace Presentacion
                     F_Alianza_Sinirube_Load(null, null);
                 }
                 else { MessageBox.Show("El usuario no tiene permisos para realizar esta acción", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error); ; return; }
+               
             }
             catch (Exception ex)
             {
@@ -160,17 +156,16 @@ namespace Presentacion
         {
             try
             {
-                SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
                 string CadenaSql = "SELECT  [CITRA].[dbo].Usuarios.Id_Usuario from [CITRA].[dbo].Permisos_x_Rol " +
                                    " INNER JOIN [CITRA].[dbo].Usuarios ON [CITRA].[dbo].Usuarios.Roles = Id_Rol " +
                                    " WHERE [CITRA].[dbo].Permisos_x_Rol.Id_Permiso = 1 and [CITRA].[dbo].Usuarios.Id_Usuario = " + lbiduser.Text;
                 /*MessageBox.Show(CadenaSql);*/
                 SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
                 _Conexion.Open();
-                SqlDataReader leer = comando.ExecuteReader();
+                SqlDataReader leer = comando.ExecuteReader();   
                 int resultado = 0;
                 if (leer.Read() == true) { resultado = leer.GetInt32(0);/*devuelve algo*/}
-
+                _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
                     mAlianza_Sinirube frm = new mAlianza_Sinirube();
@@ -182,6 +177,7 @@ namespace Presentacion
                     F_Alianza_Sinirube_Load(null, null);
                 }
                 else { MessageBox.Show("El usuario no tiene permisos para realizar esta acción", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error); ; return; }
+                
             }
             catch (Exception ex)
             {

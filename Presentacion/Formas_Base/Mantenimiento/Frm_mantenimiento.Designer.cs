@@ -153,6 +153,7 @@
             this.MinimizeBox = false;
             this.Name = "Frm_mantenimiento";
             this.Text = "Frm_mantenimiento";
+            this.Load += new System.EventHandler(this.Frm_mantenimiento_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

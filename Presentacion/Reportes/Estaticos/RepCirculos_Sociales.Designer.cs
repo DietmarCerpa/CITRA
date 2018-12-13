@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepCirculos_Sociales));
             this.CB_CS = new System.Windows.Forms.ComboBox();
             this.txt_Filtrar = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -37,10 +38,16 @@
             // CB_CS
             // 
             this.CB_CS.FormattingEnabled = true;
+            this.CB_CS.Items.AddRange(new object[] {
+            "Oganización",
+            "Departamento",
+            "Sin Filtro"});
             this.CB_CS.Location = new System.Drawing.Point(12, 12);
             this.CB_CS.Name = "CB_CS";
             this.CB_CS.Size = new System.Drawing.Size(121, 21);
             this.CB_CS.TabIndex = 0;
+            this.CB_CS.Tag = "";
+            this.CB_CS.Text = "Seleccionar Filtro";
             // 
             // txt_Filtrar
             // 
@@ -66,7 +73,7 @@
             this.CR_CS.Cursor = System.Windows.Forms.Cursors.Default;
             this.CR_CS.Location = new System.Drawing.Point(-3, 39);
             this.CR_CS.Name = "CR_CS";
-            this.CR_CS.Size = new System.Drawing.Size(764, 410);
+            this.CR_CS.Size = new System.Drawing.Size(802, 410);
             this.CR_CS.TabIndex = 3;
             this.CR_CS.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -79,6 +86,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_Filtrar);
             this.Controls.Add(this.CB_CS);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RepCirculos_Sociales";
             this.Text = "RepCirculos_Sociales";
             this.ResumeLayout(false);

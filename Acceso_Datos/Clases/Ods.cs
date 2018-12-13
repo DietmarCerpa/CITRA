@@ -12,8 +12,8 @@ namespace Acceso_Datos
 {
     public class Ods
     {
-        string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
-
+        static string vCadenaConexion = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;//
+        SqlConnection connection = new SqlConnection(vCadenaConexion);
         public Int32 Insertar(AOds pRegistro)
         {
             Int32 FilasAfectadas = 0;
@@ -23,7 +23,7 @@ namespace Acceso_Datos
 
                 string commandText = "INSERT INTO [dbo].[Alianza_Ods] VALUES (@Id_Contacto_Ods, @Nombre_Organizacion, @Nombre_Contacto, @Nombre_Cargo, @Correo_Ods, @Telefono, @Telefono2, @Nombre_Sector) ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Ods", SqlDbType.Int).Value = pRegistro.Id_Contacto_Ods;
@@ -36,6 +36,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Nombre_Sector", SqlDbType.VarChar, 20).Value = pRegistro.Nombre_Sector;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
             }
@@ -56,7 +57,7 @@ namespace Acceso_Datos
                                      "SET  Id_Contacto_Ods= @Id_Contacto_Ods, Nombre_Organizacion= @Nombre_Organizacion, Nombre_Contacto= @Nombre_Contacto, Nombre_Cargo= @Nombre_Cargo, Correo_Ods= @Correo_Ods, Telefono= @Telefono, Telefono2= @Telefono2, Nombre_Sector= @Nombre_Sector "
                                      + "WHERE  Id_Contacto_Ods= @Id_Contacto_Ods";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Ods", SqlDbType.Int).Value = pRegistro.Id_Contacto_Ods;
@@ -69,6 +70,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Nombre_Sector", SqlDbType.VarChar, 20).Value = pRegistro.Nombre_Sector;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
 
                 }
             }
@@ -89,7 +91,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Ods] AS Id, [Nombre_Organizacion] AS Organización, [Nombre_Contacto] AS Nombre, [Nombre_Cargo] AS Cargo, [Correo_Ods] AS Correo, [Telefono] AS Teléfono,  [Telefono2] AS Teléfono2, [Nombre_Sector] AS Sector  FROM [dbo].[Alianza_Ods] order by Nombre_Contacto asc";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -114,7 +116,7 @@ namespace Acceso_Datos
             try
             {
                 string commandText = "DELETE [dbo].[Alianza_Ods] WHERE Id_Contacto_Ods = @Id_Contacto_Ods";
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
                     command.Parameters.Add("@Id_Contacto_Ods", SqlDbType.Int).Value = pRegistro.Id_Contacto_Ods;
@@ -127,6 +129,7 @@ namespace Acceso_Datos
                     command.Parameters.Add("@Nombre_Sector", SqlDbType.VarChar, 20).Value = pRegistro.Nombre_Sector;
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -145,12 +148,13 @@ namespace Acceso_Datos
             {
                 string commandText = "DELETE [dbo].[Alianza_Ods] ";
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
                     connection.Open();
                     FilasAfectadas = command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -169,7 +173,7 @@ namespace Acceso_Datos
 
                 string commandText = "SELECT [Id_Contacto_Ods] AS Id , [Nombre_Organizacion] AS Organización, [Nombre_Contacto] AS Nombre, [Nombre_Cargo] AS Cargo, [Correo_Ods] AS Correo, [Telefono] AS Teléfono,  [Telefono2] AS Teléfono2, [Nombre_Sector] AS Sector  FROM [dbo].[Alianza_Ods] WHERE Id_Contacto_Ods = " + pCodigoL;
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 
@@ -197,7 +201,7 @@ namespace Acceso_Datos
                 string commandText = "SELECT [Id_Contacto_Ods] AS Id , [Nombre_Organizacion] AS Organización, [Nombre_Contacto] AS Nombre, [Nombre_Cargo] AS Cargo, [Correo_Ods] AS Correo, [Telefono] AS Teléfono,  [Telefono2] AS Teléfono2, [Nombre_Sector] AS Sector  FROM [dbo].[Alianza_Ods] WHERE Id_Contacto_Ods = " + pCodigoL;
 
 
-                using (SqlConnection connection = new SqlConnection(vCadenaConexion))
+                using (connection)
                 {
                     SqlCommand command = new SqlCommand(commandText, connection);
 

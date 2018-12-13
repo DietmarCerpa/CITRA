@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using System.Configuration;
 using Entidades;
 using Negocios;
 
@@ -17,12 +10,11 @@ namespace Presentacion
 {
     public partial class mPermisosxRol : Frm_mantenimiento
     {
+        SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
         public mPermisosxRol()
         {
             InitializeComponent();
         }
-
-
         #region "Declaracion de Variables"
         PermisosxRoles IPermisosxRoles;
         PermisoxRol VPermisoxRol;
@@ -40,8 +32,8 @@ namespace Presentacion
         {
             try
             {
-                #region "Muestra permisos"
-                dgv.DataSource = sql.MostrarDatosPermisos();
+                #region "Muestra campo sugerido"
+                    dgv.DataSource = sql.MostrarDatosPermisos();
                 #endregion
 
                 IPermisosxRoles = new PermisosxRoles();
@@ -92,22 +84,15 @@ namespace Presentacion
                 {
                     case "A":
                         #region "Valida campos repetidos en BD"
-                        SqlConnection _Conexion = new SqlConnection(@"Data Source=DESKTOP-C5D2V8H; Initial Catalog= CITRA; Integrated Security= true");
                         string CadenaSql = "SELECT id_Rol,id_Permiso from Permisos_x_Rol where id_Rol= '" + Cbo_Id_Rol.Text + "' AND id_Permiso = '" + Cbo_Id_Permiso.Text + "'";
                         SqlCommand comando = new SqlCommand(CadenaSql, _Conexion);
-
                         _Conexion.Open();
                         SqlDataReader leer = comando.ExecuteReader();
-
-
                         if (leer.Read() == true)
                         {
                             MessageBox.Show("El dato ya existe, Favor ingresar datos de nuevo", "Validación de Datos", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Asterisk);
+                            _Conexion.Close();
                             return;
-                        }
-
-                        else
-                        {
                         }
                         _Conexion.Close();
 

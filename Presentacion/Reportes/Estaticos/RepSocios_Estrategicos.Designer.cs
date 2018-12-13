@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepSocios_Estrategicos));
             this.CB_SE = new System.Windows.Forms.ComboBox();
             this.txt_Filtrar = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,11 +40,13 @@
             this.CB_SE.FormattingEnabled = true;
             this.CB_SE.Items.AddRange(new object[] {
             "Cargo",
-            "Organizacion"});
+            "Organizacion",
+            "Sin Filtro"});
             this.CB_SE.Location = new System.Drawing.Point(13, 13);
             this.CB_SE.Name = "CB_SE";
             this.CB_SE.Size = new System.Drawing.Size(121, 21);
             this.CB_SE.TabIndex = 0;
+            this.CB_SE.Text = "Seleccionar Filtro";
             // 
             // txt_Filtrar
             // 
@@ -67,9 +70,9 @@
             this.CR_SE.ActiveViewIndex = -1;
             this.CR_SE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CR_SE.Cursor = System.Windows.Forms.Cursors.Default;
-            this.CR_SE.Location = new System.Drawing.Point(0, 54);
+            this.CR_SE.Location = new System.Drawing.Point(0, 42);
             this.CR_SE.Name = "CR_SE";
-            this.CR_SE.Size = new System.Drawing.Size(800, 396);
+            this.CR_SE.Size = new System.Drawing.Size(798, 406);
             this.CR_SE.TabIndex = 3;
             this.CR_SE.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -77,14 +80,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(798, 450);
             this.Controls.Add(this.CR_SE);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_Filtrar);
             this.Controls.Add(this.CB_SE);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RepSocios_Estrategicos";
             this.Text = "RepSocios_Estrategicos";
-            this.Load += new System.EventHandler(this.RepSocios_Estrategicos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
