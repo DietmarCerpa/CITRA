@@ -59,7 +59,7 @@ namespace Presentacion
                     return;
 
                 if (EventSyncInvoke == null)
-                    EjecutarEventallerto(this, e);
+                    EjecutarEvento(this, e);
                 else
                     EventSyncInvoke.Invoke(EjecutarEvento, new object[] { this, e });
             }
