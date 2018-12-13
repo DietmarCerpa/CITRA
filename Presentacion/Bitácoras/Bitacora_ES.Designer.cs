@@ -117,6 +117,7 @@
             // dgvES
             // 
             this.dgvES.BackgroundColor = System.Drawing.Color.White;
+            this.dgvES.ForeColor = System.Drawing.Color.DeepSkyBlue;     
             this.dgvES.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvES.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvES.GridColor = System.Drawing.Color.DeepSkyBlue;

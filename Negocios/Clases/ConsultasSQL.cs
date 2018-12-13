@@ -901,7 +901,7 @@ namespace Negocios
         public DataTable BuscarFecha(string nombre)
         {
             conexion.Open();
-            SqlCommand cmd = new SqlCommand(string.Format("SELECT [Tipo_Transaccion] AS Transacción, [Tabla_Afectada] AS Tabla, [Fecha] AS Fecha, [Id_Registro] AS Id, [Nombre_Registro] AS Registro FROM [dbo].[Bitacora_Sucesos] WHERE Fecha like '%{0}%'", nombre), conexion);
+            SqlCommand cmd = new SqlCommand(string.Format("SELECT [Tipo_Transaccion] AS Transacción, [Tabla_Afectada] AS Tabla, [Fecha] AS Fecha, [Id_Registro] AS Id, [Nombre_Registro] AS Registro FROM [dbo].[Bitacora_Sucesos] WHERE CONVERT(VARCHAR(25), Fecha, 103) like '%{0}%'", nombre), conexion);
             SqlDataAdapter ad = new SqlDataAdapter(cmd);
             ds = new DataSet();
             ad.Fill(ds, "tabla");
@@ -933,7 +933,7 @@ namespace Negocios
         public DataTable BuscarFechaES(string nombre)
         {
             conexion.Open();
-            SqlCommand cmd = new SqlCommand(string.Format("SELECT [Id_Usuario] AS ID_Usuario,[Fecha] AS Fecha, [Tipo_Transaccion] AS Tipo_Transaccion FROM [dbo].[Bitacora_ES] WHERE CONVERT(VARCHAR(25), Fecha, 126) LIKE '%{0}%'", nombre), conexion);
+            SqlCommand cmd = new SqlCommand(string.Format("SELECT [Id_Usuario] AS ID_Usuario,[Fecha] AS Fecha, [Tipo_Transaccion] AS Tipo_Transaccion FROM [dbo].[Bitacora_ES] WHERE CONVERT(VARCHAR(25), Fecha, 103) LIKE '%{0}%'", nombre), conexion);
             SqlDataAdapter ad = new SqlDataAdapter(cmd);
             ds = new DataSet();
             ad.Fill(ds, "tabla");

@@ -95,11 +95,11 @@ namespace Presentacion
                 _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
-                    if (this.lstDatos.SelectedItems.Count == 0)
+                  /*  if (this.lstDatos.SelectedItems.Count == 0)
                     {
                         MessageBox.Show("Debe de seleccionar una fila de la lista", "Validación de Datos", MessageBoxButtons.RetryCancel, MessageBoxIcon.Stop);
                         return;
-                    }
+                    }*/
                     BRegional_Onu frm = new BRegional_Onu();
                     frm.ShowDialog();
                 }
@@ -178,11 +178,11 @@ namespace Presentacion
                 _Conexion.Close();
                 if (resultado > 0) /*Si tiene persmisos haga esto*/
                 {
-                    if (this.lstDatos.SelectedItems.Count == 0)
+                /*    if (this.lstDatos.SelectedItems.Count == 0)
                     {
                         MessageBox.Show("Debe de seleccionar una fila de la lista", "Validación de Datos", MessageBoxButtons.RetryCancel, MessageBoxIcon.Stop);
                         return;
-                    }
+                    }*/
                     mRegional_Onu frm = new mRegional_Onu();
                     frm.Modo = "A";
                     frm.MostrarEliminar = false;
