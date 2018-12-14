@@ -543,8 +543,15 @@ namespace Principal
 
   
         }
+        /// <summary>
+        /// Funcion establecida para cerrar el programa al darle al botton X rojo y guardar los datos en la base de datos 
+        /// para la bitacora de Salida
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             if (veces < 1 && DialogResult.Yes == MessageBox.Show("¿Esta seguro que desea abandonar el programa?", "CITRA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
             {
                 using (_Conexion)
