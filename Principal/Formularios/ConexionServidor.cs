@@ -72,7 +72,7 @@ namespace Principal.Formularios
             CadenaConexion mServidor = new CadenaConexion();
             bool mResultado;
             mResultado = mServidor.guardarServidorRemoto(txtServidorRemoto.Text, txtUsuarioRemoto.Text, txtPassRemoto.Text);
-
+            //resultado devuelve un booleano que le avisa al usuario si logro conectarse al servidor establecido y si se guardo en la cadena de conexion
             if(mResultado)
             {
                 MessageBox.Show("Se ha guardado el servidor REMOTO satisfactoriamente", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,7 +80,7 @@ namespace Principal.Formularios
             }
             else
             {
-                MessageBox.Show("Ha ocurrido un error /n Verificar los datos del Servidor", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ha ocurrido un error \n Verificar los datos del Servidor", "Validacion de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 

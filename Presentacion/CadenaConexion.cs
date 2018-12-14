@@ -43,6 +43,7 @@ namespace Presentacion
         /// <returns>retorna true (verdadero) si se logro conectar con el servidor y false (falso) si no se logra conectar</returns>
         public bool guardarServidorRemoto(string txtServidor, string txtUsuario, string txtPass)
         {
+            // se recomienda que el servidor remoto tenga ID y contraseña configurada en el sql server para mayor seguridad y para que se agregue correctamente al programa
             string nuevoservidor = "Data Source=" + txtServidor + ";Database=CITRA;User Id=" + txtUsuario + ";Password=" + txtPass;
             SqlConnection _Conexion = new SqlConnection(nuevoservidor);
             try
@@ -65,12 +66,16 @@ namespace Presentacion
         /// <returns>verdadero (true) si tiene exito</returns>
         private bool DocumentoConfig(string CadenaSQL)
         {
+            // se conecta a los archivos de configuracion .config para cambiar la cadena de conexion
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             try
             {
+                //agrega una la configuracion con el nombre MiConexion utilizado en el programa, con la cadena de conexion establecida previamente como nuevo servidor
                 ConnectionStringSettings csSettings = new ConnectionStringSettings("MiConexion", CadenaSQL, "System.Data.SqlClient");
                 ConnectionStringsSection csSection = config.ConnectionStrings;
+                // agrega la configuracion en el .config
                 csSection.ConnectionStrings.Add(csSettings);
+                //guarda la configuracion para no realizarla nuevamente en el computador
                 config.Save(ConfigurationSaveMode.Modified, true);
                 ConfigurationManager.RefreshSection(config.ConnectionStrings.SectionInformation.SectionName);
                 return true;

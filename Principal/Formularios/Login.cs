@@ -66,6 +66,7 @@ namespace Principal
                         Menu_Principal frmPrincipal = new Menu_Principal(iduser, idrol, usuario);
                         frmPrincipal.Show();
                         this.Hide();
+                        //Utilizado para la bitacora de entrada, guarda los datos Id_Usuario, Fecha y Tipo_ Transaccion
                         using (_Conexion)
                         {
                             string commandText = "INSERT INTO [dbo].[Bitacora_ES] VALUES (@Id_Usuario,@Fecha,@Tipo_Transaccion)";
@@ -88,6 +89,7 @@ namespace Principal
                 }
                 catch(Exception ew)
                 {
+                    //genera un mensaje si el usuario no se logro conectar a la base de datos debe configurar el servidor
                     MessageBox.Show("Ha ocurrido un error... ¿Configuró el servidor? \n" + ew.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
