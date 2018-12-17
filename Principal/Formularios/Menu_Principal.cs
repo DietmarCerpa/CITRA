@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using System.IO;
 using Presentacion;
 using System.Data.SqlClient;
 using System.Configuration;
 using Presentacion.Reportes.Estaticos;
+using Presentacion.Manual_de_usuario;
 
 namespace Principal
 {
@@ -19,6 +21,16 @@ namespace Principal
             lbiduser.Text = idusuario.ToString();
             lbidrol.Text = idRol.ToString();
             IDUsuario = idusuario;
+            try
+            {
+                StreamWriter Usuario = new StreamWriter("Test.txt");
+                Usuario.WriteLine("Reportado por: " + lb_usuario.Text);
+                Usuario.Close();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
             /*if (idRol == 3)
             { //Si es Estandar ocultar esos menú
                 mantenimientosToolStripMenuItem1.Visible = false;
@@ -27,7 +39,7 @@ namespace Principal
             
             MessageBox.Show("User " + idRol.ToString() + " ", "Validacion de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
 
-       }
+        }
         SqlConnection _Conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["MiConexion"].ToString());
      
         private void Menu_Principal_Load(object sender, EventArgs e)
@@ -681,7 +693,7 @@ namespace Principal
 
         private void manualDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            F_Acceso_Manual_Usuario Frm_add = new F_Acceso_Manual_Usuario();
+            ManualUsuario Frm_add = new ManualUsuario();
             Frm_add.ShowDialog(this);
         }
 
