@@ -6,7 +6,7 @@ using Presentacion;
 using System.Data.SqlClient;
 using System.Configuration;
 using Presentacion.Reportes.Estaticos;
-using Presentacion.Manual_de_usuario;
+
 
 namespace Principal
 {
@@ -693,8 +693,22 @@ namespace Principal
 
         private void manualDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManualUsuario Frm_add = new ManualUsuario();
-            Frm_add.ShowDialog(this);
+            //Abrir PDF en el programa:
+            //dando un click sobre el PDF insertado en el proyecto, en Principal cambiar:
+            //la propiedad accion de compilacion a contenido
+            //copiar en el directorio, copiar siempre
+            try
+            {
+                // crea un clase que se encarga de buscar en la carpeta de instalacion el archivo solicitado
+                System.Diagnostics.Process proc = new System.Diagnostics.Process(); 
+                proc.StartInfo.FileName = "MANUALDEUSUARIO.pdf";
+                proc.Start(); // Abre el archivo solicitado
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)

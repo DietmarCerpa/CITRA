@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Principal.Properties {
+namespace CITRA.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Principal.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Principal.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CITRA.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,16 @@ namespace Principal.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
+        internal static System.Drawing.Icon _38872313_2342988415727534_2024960355737796608_n {
+            get {
+                object obj = ResourceManager.GetObject("_38872313_2342988415727534_2024960355737796608_n", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -86,6 +96,16 @@ namespace Principal.Properties {
         internal static System.Drawing.Bitmap pnud_0 {
             get {
                 object obj = ResourceManager.GetObject("pnud_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pnud_01 {
+            get {
+                object obj = ResourceManager.GetObject("pnud_01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

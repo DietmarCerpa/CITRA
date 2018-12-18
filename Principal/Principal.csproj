@@ -7,13 +7,13 @@
     <ProjectGuid>{751B29CD-00B6-41C2-B695-5C7E50E7E04F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Principal</RootNamespace>
-    <AssemblyName>Principal</AssemblyName>
+    <RootNamespace>CITRA</RootNamespace>
+    <AssemblyName>CITRA</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\admin\Desktop\</PublishUrl>
+    <PublishUrl>C:\Users\edxil\Documents\Workana\CITRA\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -67,6 +67,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>38872313_2342988415727534_2024960355737796608_n.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -121,7 +125,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\MANUALDEUSUARIO.pdf" />
+    <None Include="bower.json" />
     <None Include="ClassDiagram1.cd" />
+    <Content Include="MANUALDEUSUARIO.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Principal_ClaveTemporal.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -145,9 +154,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\onu.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
@@ -165,16 +171,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pnud_0.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pnud.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pnud_01.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="38872313_2342988415727534_2024960355737796608_n.ico" />
+    <None Include="Resources\pnud_0.jpeg" />
+    <None Include="Resources\pnud.jpeg" />
+    <None Include="Resources\onu.jpg" />
+    <None Include="Resources\38872313_2342988415727534_2024960355737796608_n.ico" />
+    <None Include="bin\Debug\Test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

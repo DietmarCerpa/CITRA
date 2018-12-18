@@ -38,10 +38,12 @@
             // CR_AO
             // 
             this.CR_AO.ActiveViewIndex = -1;
+            this.CR_AO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CR_AO.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CR_AO.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.CR_AO.Cursor = System.Windows.Forms.Cursors.Default;
-            this.CR_AO.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CR_AO.Location = new System.Drawing.Point(0, 45);
             this.CR_AO.Name = "CR_AO";
             this.CR_AO.Size = new System.Drawing.Size(831, 419);
@@ -89,8 +91,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.CR_AO);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "RepAlianza_Ods";
             this.Text = "RepAlianza_Ods";
             this.ResumeLayout(false);

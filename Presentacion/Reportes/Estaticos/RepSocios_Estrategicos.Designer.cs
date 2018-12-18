@@ -68,6 +68,9 @@
             // CR_SE
             // 
             this.CR_SE.ActiveViewIndex = -1;
+            this.CR_SE.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CR_SE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CR_SE.Cursor = System.Windows.Forms.Cursors.Default;
             this.CR_SE.Location = new System.Drawing.Point(0, 42);
@@ -86,8 +89,6 @@
             this.Controls.Add(this.txt_Filtrar);
             this.Controls.Add(this.CB_SE);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "RepSocios_Estrategicos";
             this.Text = "RepSocios_Estrategicos";
             this.ResumeLayout(false);

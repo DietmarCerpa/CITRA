@@ -69,6 +69,9 @@
             // CR_CS
             // 
             this.CR_CS.ActiveViewIndex = -1;
+            this.CR_CS.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CR_CS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CR_CS.Cursor = System.Windows.Forms.Cursors.Default;
             this.CR_CS.Location = new System.Drawing.Point(-3, 39);
@@ -87,8 +90,6 @@
             this.Controls.Add(this.txt_Filtrar);
             this.Controls.Add(this.CB_CS);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "RepCirculos_Sociales";
             this.Text = "RepCirculos_Sociales";
             this.ResumeLayout(false);
